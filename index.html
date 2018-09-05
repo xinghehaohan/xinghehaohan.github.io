@@ -34,7 +34,7 @@
             <ul class="summary">
                 <li class="chapter active" data-level="1.1" data-path="./">
                     <a href="./">
-                        我的简历
+                        外网推荐
                     </a>
                 </li>
                 <li class="divider"></li>
@@ -49,7 +49,7 @@
                 <!-- Title -->
                 <h1>
                     <i class="fa fa-circle-o-notch fa-spin"></i>
-                    <a href=".">Hi,K!</a>
+                    <a href=".">Hi!K!</a>
                 </h1>
             </div>
             <div class="page-wrapper" tabindex="-1" role="main">
@@ -60,113 +60,135 @@
                             <section class="normal markdown-section" id="itemWrap">
                                 <!--<img src="gitbook/images/banner.jpeg" alt="">-->
                                 <canvas id="canvas"></canvas>
-                                <ul>
-                                    <li
-                                            style="background-image:url('gitbook/images/quora.png')"
-                                    >
-                                        <a target="_blank"  href="https://www.quora.com/">Quora问答网站</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/youtube.png')"
-                                    >
-                                        <a target="_blank" href="http://www.youtube.com/">youtube视频</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/twitter.png')"
-                                    >
-                                        <a target="_blank"  href="https://twitter.com/">twitter推特</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/ins.png')"
-                                    >
-                                        <a target="_blank"  href="http://instagram.com/">instagram照片墙</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/jiaoyu.png')"
-                                    >
-                                        <a target="_blank" href="https://www.coursera.org/">Coursera公开课</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/ted.png')"
-                                    >
-                                        <a target="_blank" href="https://www.ted.com/">Ted演讲</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/lanfanqie.png')"
-                                    >
-                                        <a target="_blank"  href="https://www.rottentomatoes.com/">烂番茄新鲜度</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/ibm.png')"
-                                    >
-                                        <a target="_blank"  href="http://www.imdb.com/">IMDB影评</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/stackexchange.png')"
-                                    >
-                                        <a target="_blank"  href="https://stackexchange.com/">StackExchange</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/cnn.png')"
-                                    >
-                                        <a target="_blank"  href="https://www.cnn.com/">CNN美国新闻网</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/bbc.png')"
-                                    >
-                                        <a target="_blank"  href="http://www.bbc.com/news">英国广播公司</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/yahu.png')"
-                                    >
-                                        <a target="_blank"  href="https://www.yahoo.com/news">雅虎新闻网</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/nature.png');background-size:36px"
-                                    >
-                                        <a target="_blank"  href="https://www.nature.com/">Nature科学期刊</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/time.png')"
-                                    >
-                                        <a target="_blank"  href="http://time.com/">Time时代杂志</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/wiki.png')"
-                                    >
-                                        <a target="_blank"  href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia维基百科</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/nasa.png')"
-                                    >
-                                        <a target="_blank"  href="https://www.nasa.gov/">美国国家航空航天局</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/nanmin.png')"
-                                    >
-                                        <a target="_blank"  href="http://www.unhcr.org/">联合国难民署</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/engadget.png')"
-                                    >
-                                        <a target="_blank"  href="https://www.engadget.com/">engadget瘾科技</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/vocabulary.png');background-size: 40px"
-                                    >
-                                        <a target="_blank"  href="https://www.vocabulary.com/dictionary/test">单词学习词库</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/cnet.png');background-size: 40px"
-                                    >
-                                        <a target="_blank"  href="https://www.cnet.com/">技术爱好者科技</a>
-                                    </li>
-                                    <li
-                                            style="background-image:url('gitbook/images/github.png');background-size: 40px;"
-                                    >
-                                        <a target="_blank"  href="https://github.com/">全球开源代码库</a>
-                                    </li>
+                                <form action="" class="serchInput">
+                                    <input type="text" id="query">
+                                </form>
+                                <ul id="listDom">
+
                                 </ul>
+                                <!--<ul id="listDom">-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/quora.png')"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="https://www.quora.com/">Quora问答网站</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/youtube.png')"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank" href="http://www.youtube.com/">youtube视频</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/twitter.png')"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="https://twitter.com/">twitter推特</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/ins.png')"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="http://instagram.com/">instagram照片墙</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/jiaoyu.png')"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank" href="https://www.coursera.org/">Coursera公开课</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/ted.png')"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank" href="https://www.ted.com/">Ted演讲</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/lanfanqie.png')"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="https://www.rottentomatoes.com/">烂番茄新鲜度</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/ibm.png')"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="http://www.imdb.com/">IMDB影评</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/stackexchange.png')"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="https://stackexchange.com/">StackExchange</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/cnn.png')"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="https://www.cnn.com/">CNN美国新闻网</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/bbc.png')"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="http://www.bbc.com/news">英国广播公司</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/yahu.png')"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="https://www.yahoo.com/news">雅虎新闻网</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/nature.png');background-size:36px"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="https://www.nature.com/">Nature科学期刊</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/time.png')"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="http://time.com/">Time时代杂志</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/wiki.png')"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia维基百科</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/nasa.png')"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="https://www.nasa.gov/">美国国家航空航天局</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/nanmin.png')"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="http://www.unhcr.org/">联合国难民署</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/engadget.png')"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="https://www.engadget.com/">engadget瘾科技</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/vocabulary.png');background-size: 40px"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="https://www.vocabulary.com/dictionary/test">单词学习词库</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/cnet.png');background-size: 40px"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="https://www.cnet.com/">技术爱好者科技</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/github.png');background-size: 40px;"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="https://github.com/">全球开源代码库</a>-->
+                                    <!--</li>-->
+
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/tumblr.png');background-size: 40px"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="https://www.tumblr.com/">Tumblr轻博客</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/book.png');background-size: 40px"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="https://www.goodreads.com/">goodreads读书社区</a>-->
+                                    <!--</li>-->
+                                    <!--<li-->
+                                            <!--style="background-image:url('gitbook/images/map.jpeg');background-size: 40px;"-->
+                                    <!--&gt;-->
+                                        <!--<a target="_blank"  href="http://www.google.cn/maps">googleMap</a>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
                             </section>
                         </div>
                         <div class="search-results">
@@ -283,8 +305,9 @@
 
 
 <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
-
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script>
+
 
     class Circle{
         constructor(x,y){
@@ -346,6 +369,8 @@
 
     window.requestAnimationFrame = window.requestAnimationFrame ||window.mozRequestAnimationFrame ||window.webkitRequestAnimationFrame ||window.msRequestAnimationFrame;
     let canvans = document.getElementById('canvas');
+    canvas.width = document.body.clientWidth;
+    canvas.height = document.body.clientHeight;
     let ctx = canvans.getContext('2d');
     let w = canvans.width = canvans.offsetWidth;
     let h = canvans.height = canvans.offsetHeight;
@@ -388,6 +413,135 @@
         currentCircle.x = null;
         currentCircle.y = null;
     };
+
+    var menuList = [
+        {
+            name:'Quora问答网站',
+            url:'https://www.quora.com/',
+            icon:'gitbook/images/quora.png'
+        },
+        {
+            name:'youtube视频',
+            url:'https://www.youtube.com/',
+            icon:'gitbook/images/youtube.png'
+        },
+        {
+            name:'twitter推特',
+            url:'https://www.twitter.com/',
+            icon:'gitbook/images/twitter.png'
+        },
+        {
+            name:'instagram照片墙',
+            url:'https://www.instagram.com/',
+            icon:'gitbook/images/ins.png'
+        },
+        {
+            name:'Coursera公开课',
+            url:'https://www.coursera.org/',
+            icon:'gitbook/images/jiaoyu.png'
+        },
+        {
+            name:'Ted演讲',
+            url:'https://www.ted.com/',
+            icon:'gitbook/images/ted.png'
+        },
+        {
+            name:'烂番茄新鲜度',
+            url:'https://www.rottentomatoes.com/',
+            icon:'gitbook/images/lanfanqie.png'
+        },
+        {
+            name:'IMDB影评',
+            url:'https://www.imdb.com/',
+            icon:'gitbook/images/ibm.png'
+        },
+        {
+            name:'StackExchange',
+            url:'https://www.stackexchange.com/',
+            icon:'gitbook/images/stackexchange.png'
+        },
+        {
+            name:'CNN美国新闻网',
+            url:'https://www.cnn.com/',
+            icon:'gitbook/images/cnn.png'
+        },
+        {
+            name:'英国广播公司',
+            url:'http://www.bbc.com/news',
+            icon:'gitbook/images/bbc.png'
+        },
+        {
+            name:'雅虎新闻网',
+            url:'https://www.yahoo.com/news',
+            icon:'gitbook/images/yahu.png'
+        },
+        {
+            name:'Nature科学期刊',
+            url:'https://www.nature.com/',
+            icon:'gitbook/images/nature.png'
+        },
+        {
+            name:'Time时代杂志',
+            url:'https://www.time.com/',
+            icon:'gitbook/images/time.png'
+        },
+        {
+            name:'Wikipedia维基百科',
+            url:'https://en.wikipedia.org/wiki/Main_Page',
+            icon:'gitbook/images/wiki.png'
+        },
+        {
+            name:'美国国家航空航天局',
+            url:'https://www.nasa.gov/',
+            icon:'gitbook/images/nasa.png'
+        },
+        {
+            name:'联合国难民署',
+            url:'http://www.unhcr.org/',
+            icon:'gitbook/images/nanmin.png'
+        },
+        {
+            name:'engadget瘾科技',
+            url:'https://www.engadget.com/',
+            icon:'gitbook/images/engadget.png'
+        },
+        {
+            name:'单词学习词库',
+            url:'https://www.vocabulary.com/dictionary/test',
+            icon:'gitbook/images/vocabulary.png'
+        },
+        {
+            name:'技术爱好者科技',
+            url:'https://www.cnet.com/',
+            icon:'gitbook/images/cnet.png'
+        },
+        {
+            name:'github开源代码库',
+            url:'https://www.github.com/',
+            icon:'gitbook/images/github.png'
+        },
+        {
+            name:'Tumblr轻博客',
+            url:'https://www.tumblr.com/',
+            icon:'gitbook/images/tumblr.png'
+        },
+        {
+            name:'goodreads读书社区',
+            url:'https://www.goodreads.com/',
+            icon:'gitbook/images/book.png'
+        },
+        {
+            name:'googleMap',
+            url:'http://www.google.cn/maps',
+            icon:'gitbook/images/map.jpeg'
+        }
+    ]
+    letlistHtml = '';
+    for(var i =0;i<menuList.length;i++){
+        letlistHtml+='<li style="background-image:url('+menuList[i].icon+');background-size: 40px"><a href="'+menuList[i].url+'" target="_blank">'+menuList[i].name+'</a>' +
+            '</li>'
+    };
+    $('#listDom').append(letlistHtml);
 </script>
 </body>
 </html>
