@@ -60,9 +60,9 @@
                             <section class="normal markdown-section" id="itemWrap">
                                 <!--<img src="gitbook/images/banner.jpeg" alt="">-->
                                 <canvas id="canvas"></canvas>
-                                <form action="" class="serchInput">
-                                    <input type="text" id="query">
-                                </form>
+                                <!--<form action="" class="serchInput">-->
+                                    <!--<input type="text" id="query">-->
+                                <!--</form>-->
                                 <ul id="listDom">
 
                                 </ul>
@@ -542,6 +542,9 @@
             '</li>'
     };
     $('#listDom').append(letlistHtml);
+//    if(document.body.clientWidth<350){
+//        document.getElementsByClassName('serchInput')[0].style.display='none'
+//    }
 </script>
 </body>
 </html>
