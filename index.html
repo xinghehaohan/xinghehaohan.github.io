@@ -60,9 +60,9 @@
                             <section class="normal markdown-section" id="itemWrap">
                                 <!--<img src="gitbook/images/banner.jpeg" alt="">-->
                                 <canvas id="canvas"></canvas>
-                                <!--<form action="" class="serchInput">-->
-                                    <!--<input type="text" id="query">-->
-                                <!--</form>-->
+                                <form action="" class="serchInput">
+                                    <input type="text" id="query">
+                                </form>
                                 <ul id="listDom">
 
                                 </ul>
@@ -535,7 +535,7 @@
             url:'http://www.google.cn/maps',
             icon:'gitbook/images/map.jpeg'
         }
-    ]
+    ];
     letlistHtml = '';
     for(var i =0;i<menuList.length;i++){
         letlistHtml+='<li style="background-image:url('+menuList[i].icon+');background-size: 40px"><a href="'+menuList[i].url+'" target="_blank">'+menuList[i].name+'</a>' +
