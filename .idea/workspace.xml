@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="836cceda-ac4c-46c7-a5b7-854f5ef0a4ee" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tree/index.html" afterPath="$PROJECT_DIR$/tree/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tree/contact.html" afterPath="$PROJECT_DIR$/tree/contact.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -52,11 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="contact.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="contact.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tree/contact.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="25" column="93" lean-forward="false" selection-start-line="25" selection-start-column="76" selection-end-line="25" selection-end-column="93" />
+            <state relative-caret-position="188">
+              <caret line="155" column="0" lean-forward="true" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -72,11 +72,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tree/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="284" column="0" lean-forward="true" selection-start-line="284" selection-start-column="0" selection-end-line="284" selection-end-column="0" />
+            <state relative-caret-position="315">
+              <caret line="289" column="42" lean-forward="true" selection-start-line="289" selection-start-column="42" selection-end-line="289" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -144,8 +144,9 @@
       <find>canvas</find>
       <find>googleMap</find>
       <find>ready</find>
-      <find>bootstrap.min.css</find>
       <find>bootstrap.min.js</find>
+      <find>bootstrap.min.css</find>
+      <find>bootstrap</find>
     </findStrings>
     <replaceStrings>
       <replace>:</replace>
@@ -164,6 +165,7 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/gitbook/jianli.html" />
         <option value="$PROJECT_DIR$/tree/index.html" />
+        <option value="$PROJECT_DIR$/tree/contact.html" />
       </list>
     </option>
   </component>
@@ -360,12 +362,12 @@
       <workItem from="1567690580397" duration="6380000" />
       <workItem from="1568012861022" duration="950000" />
       <workItem from="1569006396655" duration="1105000" />
-      <workItem from="1569129146163" duration="350000" />
+      <workItem from="1569129146163" duration="712000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56360000" />
+    <option name="totallyTimeSpent" value="56722000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -654,14 +656,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tree/contact.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="25" column="93" lean-forward="false" selection-start-line="25" selection-start-column="76" selection-end-line="25" selection-end-column="93" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ibf/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="388">
@@ -672,8 +666,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tree/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="284" column="0" lean-forward="true" selection-start-line="284" selection-start-column="0" selection-end-line="284" selection-end-column="0" />
+        <state relative-caret-position="315">
+          <caret line="289" column="42" lean-forward="true" selection-start-line="289" selection-start-column="42" selection-end-line="289" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tree/contact.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="155" column="0" lean-forward="true" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
           <folding />
         </state>
       </provider>
