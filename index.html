@@ -1,551 +1,1009 @@
-<!DOCTYPE HTML>
-<html lang="">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>less is more</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="description" content="">
-    <meta name="generator" content="GitBook 3.2.3">
-    <link rel="stylesheet" href="gitbook/style.css">
-    <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
-    <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
-    <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/icon.jpeg">
-    <link rel="shortcut icon" href="gitbook/images/icon.jpeg" type="image/x-icon">
-    <link rel="stylesheet" href="gitbook/css/index.css">
-    <style>
-        .myPic{
-            width: 300px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>102 Triq il-Punent — Property Due Diligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* ── Backgrounds ── */
+      --bg:        #f0ebe0;   /* warm Maltese limestone parchment */
+      --surface:   #ffffff;
+      --surface-2: #faf7f2;
+      --border:    #d9d0c2;   /* warm stone */
+      --border-lt: #ece6db;
+
+      /* ── Text ── */
+      --ink:   #141e2d;   /* deep ink */
+      --text:  #28384e;
+      --muted: #6e7f96;
+
+      /* ── Limestone Gold (primary accent) ── */
+      --gold:     #8a5c0a;   /* burnished, not brash */
+      --gold-mid: #b87c18;
+      --gold-lt:  #fdf3dc;
+      --gold-bd:  #ddb96a;
+
+      /* ── Mediterranean Blue (secondary accent) ── */
+      --navy:     #0e2240;   /* deep Maltese sea */
+      --blue:     #1e4d9b;
+      --blue-lt:  #e6eef9;
+      --blue-bd:  #7da4dc;
+
+      /* ── Status: Crimson (critical) ── */
+      --red:    #8c1a2a;
+      --red-lt: #fdf0f2;
+      --red-bd: #f0b8c0;
+
+      /* ── Status: Sienna (high) ── */
+      --amber:    #7c3410;
+      --amber-lt: #fef6ee;
+      --amber-bd: #f0c09a;
+
+      /* ── Status: Forest (done) ── */
+      --green:    #145238;
+      --green-lt: #eef9f4;
+      --green-bd: #8ed5b4;
+
+      /* ── Status: Slate (neutral) ── */
+      --slate:    #3a5068;
+      --slate-lt: #eef2f7;
+      --slate-bd: #9ab4cc;
+
+      --radius:    12px;
+      --shadow:    0 1px 4px rgba(14,34,64,.06), 0 2px 12px rgba(14,34,64,.07);
+      --shadow-lg: 0 4px 16px rgba(14,34,64,.10), 0 12px 32px rgba(14,34,64,.10);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lora', 'Georgia', serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #080f1c 0%, #0e2240 55%, #1a3a7a 100%);
+      color: #fff;
+      padding: 4rem 2rem 3.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 60% 0%, rgba(200,155,30,.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(200,155,30,.18);
+      border: 1px solid rgba(200,155,30,.45);
+      color: #e8c87a;
+      font-family: 'Inter', sans-serif;
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .32rem 1rem;
+      border-radius: 99px;
+      margin-bottom: 1.4rem;
+    }
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      margin-bottom: .5rem;
+      color: #f5f0e8;
+    }
+    .hero-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: .95rem;
+      font-weight: 400;
+      color: #7da4dc;
+      margin-bottom: 2rem;
+      letter-spacing: .02em;
+    }
+    .hero-pills {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: .55rem;
+    }
+    .pill {
+      font-family: 'Inter', sans-serif;
+      font-size: .73rem;
+      font-weight: 500;
+      padding: .32rem .9rem;
+      border-radius: 99px;
+      border: 1px solid;
+      letter-spacing: .01em;
+    }
+    .pill-red   { background: rgba(140,26,42,.30); border-color: rgba(240,184,192,.35); color: #f5b8c3; }
+    .pill-amber { background: rgba(124,52,16,.28); border-color: rgba(240,192,154,.35); color: #f0c09a; }
+    .pill-blue  { background: rgba(30,77,155,.30); border-color: rgba(125,164,220,.35); color: #93bce8; }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .section { padding: 3rem 0; }
+    .section + .section { border-top: 1px solid var(--border-lt); }
+
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold-mid);
+      margin-bottom: .45rem;
+    }
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1.5rem;
+      letter-spacing: -.01em;
+    }
+
+    /* ── STATUS GRID ── */
+    .status-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 640px) { .status-grid { grid-template-columns: 1fr; } }
+
+    .status-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      box-shadow: var(--shadow);
+    }
+    .status-card h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 1.1rem;
+      display: flex; align-items: center; gap: .55rem;
+    }
+    .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .dot-green { background: var(--green); }
+    .dot-red   { background: var(--red); }
+    .status-card ul { list-style: none; }
+    .status-card li {
+      font-family: 'Inter', sans-serif;
+      font-size: .855rem;
+      padding: .48rem 0;
+      border-bottom: 1px solid var(--border-lt);
+      color: var(--text);
+      display: flex; align-items: baseline; gap: .6rem;
+    }
+    .status-card li:last-child { border-bottom: none; }
+    .status-card li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      font-size: .78rem;
+      flex-shrink: 0;
+    }
+    .status-card.missing li::before {
+      content: '✗';
+      color: var(--red);
+    }
+
+    /* ── CHALLENGE CARDS ── */
+    .challenges { display: flex; flex-direction: column; gap: .9rem; }
+    .challenge {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid;
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    .challenge-1 { border-left-color: #8c1a2a; }
+    .challenge-2 { border-left-color: #a52234; }
+    .challenge-3 { border-left-color: #7c3410; }
+    .challenge-4 { border-left-color: #a04a18; }
+    .challenge-5 { border-left-color: #1e4d9b; }
+
+    .challenge-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--border);
+      line-height: 1;
+      width: 2.2rem;
+      text-align: center;
+      letter-spacing: -.03em;
+    }
+    .challenge h3 {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: .4rem;
+    }
+    .challenge p {
+      font-family: 'Inter', sans-serif;
+      font-size: .86rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .challenge .severity {
+      font-family: 'Inter', sans-serif;
+      font-size: .67rem;
+      font-weight: 700;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      padding: .22rem .65rem;
+      border-radius: 99px;
+      display: inline-block;
+      margin-bottom: .55rem;
+    }
+    .sev-critical {
+      background: var(--red-lt);
+      color: var(--red);
+      border: 1px solid var(--red-bd);
+    }
+    .sev-high {
+      background: var(--amber-lt);
+      color: var(--amber);
+      border: 1px solid var(--amber-bd);
+    }
+    .sev-medium {
+      background: var(--blue-lt);
+      color: var(--blue);
+      border: 1px solid var(--blue-bd);
+    }
+
+    /* ── ACTION STEPS ── */
+    .actions { display: flex; flex-direction: column; gap: .75rem; }
+    .action {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    .action-step {
+      width: 2.2rem; height: 2.2rem;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-mid) 100%);
+      color: #fff;
+      border-radius: 50%;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: .88rem;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(138,92,10,.30);
+    }
+    .action h3 {
+      font-family: 'Lora', serif;
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: .3rem;
+    }
+    .action p {
+      font-family: 'Inter', sans-serif;
+      font-size: .84rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── PRIORITY LIST ── */
+    .priority-list {
+      background: linear-gradient(135deg, #0a1828 0%, #0e2240 100%);
+      border: 1px solid rgba(221,185,106,.18);
+      border-radius: var(--radius);
+      padding: 2rem 2.2rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .priority-list h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold-bd);
+      margin-bottom: 1.3rem;
+    }
+    .priority-list ol {
+      list-style: none;
+      counter-reset: priority;
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
+    }
+    .priority-list li {
+      counter-increment: priority;
+      font-family: 'Inter', sans-serif;
+      font-size: .875rem;
+      color: #c8d8ec;
+      display: flex; align-items: center; gap: .85rem;
+    }
+    .priority-list li::before {
+      content: counter(priority);
+      font-weight: 700;
+      font-size: .72rem;
+      color: var(--gold-bd);
+      background: rgba(221,185,106,.12);
+      border: 1px solid rgba(221,185,106,.28);
+      border-radius: 50%;
+      min-width: 1.6rem; height: 1.6rem;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── DOCUMENT ANALYSIS ── */
+    .doc-analysis { display: flex; flex-direction: column; gap: 1.25rem; }
+    .doc-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .doc-item-header {
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border-lt);
+      padding: 1rem 1.5rem;
+      display: flex; align-items: center; gap: .8rem;
+    }
+    .doc-item-header h3 {
+      font-family: 'Lora', serif;
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--navy);
+      flex: 1;
+    }
+    .tag {
+      font-family: 'Inter', sans-serif;
+      font-size: .65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      padding: .22rem .65rem;
+      border-radius: 99px;
+      white-space: nowrap;
+      border: 1px solid;
+    }
+    .tag-done    { background: var(--green-lt);  color: var(--green);  border-color: var(--green-bd); }
+    .tag-missing { background: var(--red-lt);    color: var(--red);    border-color: var(--red-bd); }
+    .tag-partial { background: var(--amber-lt);  color: var(--amber);  border-color: var(--amber-bd); }
+    .tag-note    { background: var(--slate-lt);  color: var(--slate);  border-color: var(--slate-bd); }
+
+    .doc-item-body {
+      padding: 1.2rem 1.5rem;
+      font-family: 'Inter', sans-serif;
+      font-size: .865rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── GALLERY ── */
+    .gallery-section { padding: 3rem 0; border-top: 1px solid var(--border-lt); }
+    .gallery-group { margin-bottom: 3rem; }
+    .gallery-group-title {
+      font-family: 'Inter', sans-serif;
+      font-size: .92rem;
+      font-weight: 600;
+      color: var(--navy);
+      padding: .65rem 1.1rem;
+      background: linear-gradient(to right, var(--gold-lt), var(--surface-2));
+      border-left: 3px solid var(--gold-mid);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin-bottom: 1.2rem;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 1rem;
+    }
+    .gallery-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--gold-bd);
+    }
+    .gallery-item img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      background: var(--bg);
+    }
+    .gallery-item-label {
+      font-family: 'Inter', sans-serif;
+      font-size: .72rem;
+      color: var(--muted);
+      padding: .5rem .75rem;
+      border-top: 1px solid var(--border-lt);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(8,15,28,.94);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      flex-direction: column;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 24px 64px rgba(0,0,0,.6);
+    }
+    .lightbox-caption {
+      color: #7da4dc;
+      font-family: 'Inter', sans-serif;
+      font-size: .82rem;
+      margin-top: .9rem;
+      text-align: center;
+    }
+    .lightbox-close {
+      position: fixed; top: 1.2rem; right: 1.5rem;
+      color: #fff; font-size: 1.8rem;
+      cursor: pointer; background: none; border: none;
+      line-height: 1; opacity: .55; transition: opacity .15s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+    .lightbox-nav {
+      position: fixed;
+      top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.16);
+      color: #fff;
+      font-size: 1.4rem;
+      width: 3rem; height: 3rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+    }
+    .lightbox-nav:hover { background: rgba(255,255,255,.18); }
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080f1c;
+      color: #4a6080;
+      font-family: 'Inter', sans-serif;
+      font-size: .78rem;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
+      line-height: 1.9;
+    }
+
+    /* ── CALLOUT ── */
+    .callout {
+      background: linear-gradient(to right, #fdf6e3, var(--surface));
+      border: 1px solid var(--gold-bd);
+      border-left: 4px solid var(--gold-mid);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.6rem;
+      font-family: 'Inter', sans-serif;
+      font-size: .875rem;
+      line-height: 1.7;
+      color: #4a3800;
+      margin: 1.5rem 0;
+    }
+    .callout strong { color: #2e2200; font-weight: 600; }
+
+    hr.subtle { border: none; border-top: 1px solid var(--border-lt); margin: 2rem 0; }
+  </style>
 </head>
 <body>
-<div class="book">
-    <div class="book-summary">
-        <div id="book-search-input" role="search">
-            <input type="text" placeholder="Type to search"/>
-        </div>
-        <nav role="navigation">
-            <ul class="summary">
-                <li class="chapter active" data-level="1.1" data-path="./">
-                    <a href="./">
-                        外网推荐
-                    </a>
-                </li>
-                <li class="divider"></li>
 
-            </ul>
-        </nav>
-    </div>
-
-    <div class="book-body">
-        <div class="body-inner">
-            <div class="book-header" role="navigation">
-                <!-- Title -->
-                <h1>
-                    <i class="fa fa-circle-o-notch fa-spin"></i>
-                    <a href=".">Hi!K!</a>
-                </h1>
-            </div>
-            <div class="page-wrapper" tabindex="-1" role="main">
-                <div class="page-inner">
-
-                    <div id="book-search-results">
-                        <div class="search-noresults">
-                            <section class="normal markdown-section" id="itemWrap">
-                                <!--<img src="gitbook/images/banner.jpeg" alt="">-->
-                                <canvas id="canvas"></canvas>
-                                <form action="" class="serchInput">
-                                    <input type="text" id="query">
-                                </form>
-                                <ul id="listDom">
-
-                                </ul>
-                                <!--<ul id="listDom">-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/quora.png')"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="https://www.quora.com/">Quora问答网站</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/youtube.png')"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank" href="http://www.youtube.com/">youtube视频</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/twitter.png')"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="https://twitter.com/">twitter推特</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/ins.png')"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="http://instagram.com/">instagram照片墙</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/jiaoyu.png')"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank" href="https://www.coursera.org/">Coursera公开课</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/ted.png')"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank" href="https://www.ted.com/">Ted演讲</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/lanfanqie.png')"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="https://www.rottentomatoes.com/">烂番茄新鲜度</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/ibm.png')"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="http://www.imdb.com/">IMDB影评</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/stackexchange.png')"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="https://stackexchange.com/">StackExchange</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/cnn.png')"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="https://www.cnn.com/">CNN美国新闻网</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/bbc.png')"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="http://www.bbc.com/news">英国广播公司</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/yahu.png')"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="https://www.yahoo.com/news">雅虎新闻网</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/nature.png');background-size:36px"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="https://www.nature.com/">Nature科学期刊</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/time.png')"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="http://time.com/">Time时代杂志</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/wiki.png')"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia维基百科</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/nasa.png')"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="https://www.nasa.gov/">美国国家航空航天局</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/nanmin.png')"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="http://www.unhcr.org/">联合国难民署</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/engadget.png')"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="https://www.engadget.com/">engadget瘾科技</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/vocabulary.png');background-size: 40px"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="https://www.vocabulary.com/dictionary/test">单词学习词库</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/cnet.png');background-size: 40px"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="https://www.cnet.com/">技术爱好者科技</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/github.png');background-size: 40px;"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="https://github.com/">全球开源代码库</a>-->
-                                    <!--</li>-->
-
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/tumblr.png');background-size: 40px"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="https://www.tumblr.com/">Tumblr轻博客</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/book.png');background-size: 40px"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="https://www.goodreads.com/">goodreads读书社区</a>-->
-                                    <!--</li>-->
-                                    <!--<li-->
-                                            <!--style="background-image:url('gitbook/images/map.jpeg');background-size: 40px;"-->
-                                    <!--&gt;-->
-                                        <!--<a target="_blank"  href="http://www.google.cn/maps">googleMap</a>-->
-                                    <!--</li>-->
-                                <!--</ul>-->
-                            </section>
-                        </div>
-                        <div class="search-results">
-                            <div class="has-results">
-
-                                <h1 class="search-results-title"><span class='search-results-count'></span> results
-                                    matching "<span class='search-query'></span>"</h1>
-                                <ul class="search-results-list"></ul>
-
-                            </div>
-                            <div class="no-results">
-
-                                <h1 class="search-results-title">No results matching "<span class='search-query'></span>"
-                                </h1>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-
-    </div>
-
-    <script>
-        var gitbook = gitbook || [];
-        gitbook.push(function () {
-            gitbook.page.hasChanged({
-                "page": {"title": "Introduction", "level": "1.1", "depth": 1, "dir": "ltr"},
-                "config": {
-                    "gitbook": "*",
-                    "theme": "default",
-                    "variables": {},
-                    "plugins": [],
-                    "pluginsConfig": {
-                        "highlight": {},
-                        "search": {},
-                        "lunr": {"maxIndexSize": 1000000, "ignoreSpecialCharacters": false},
-                        "sharing": {
-                            "facebook": true,
-                            "twitter": true,
-                            "google": false,
-                            "weibo": false,
-                            "instapaper": false,
-                            "vk": false,
-                            "all": ["facebook", "google", "twitter", "weibo", "instapaper"]
-                        },
-                        "fontsettings": {"theme": "night", "family": "sans", "size": 2},
-                        "theme-default": {
-                            "styles": {
-                                "website": "styles/website.css",
-                                "pdf": "styles/pdf.css",
-                                "epub": "styles/epub.css",
-                                "mobi": "styles/mobi.css",
-                                "ebook": "styles/ebook.css",
-                                "print": "styles/print.css"
-                            }, "showLevel": false
-                        }
-                    },
-                    "structure": {
-                        "langs": "LANGS.md",
-                        "readme": "README.md",
-                        "glossary": "GLOSSARY.md",
-                        "summary": "SUMMARY.md"
-                    },
-                    "pdf": {
-                        "pageNumbers": true,
-                        "fontSize": 12,
-                        "fontFamily": "Arial",
-                        "paperSize": "a4",
-                        "chapterMark": "pagebreak",
-                        "pageBreaksBefore": "/",
-                        "margin": {"right": 62, "left": 62, "top": 56, "bottom": 56}
-                    },
-                    "styles": {
-                        "website": "styles/website.css",
-                        "pdf": "styles/pdf.css",
-                        "epub": "styles/epub.css",
-                        "mobi": "styles/mobi.css",
-                        "ebook": "styles/ebook.css",
-                        "print": "styles/print.css"
-                    }
-                },
-                "file": {"path": "README.md", "mtime": "2018-06-08T10:37:36.000Z", "type": "markdown"},
-                "gitbook": {"version": "3.2.3", "time": "2018-06-08T10:49:45.486Z"},
-                "basePath": ".",
-                "book": {"language": ""}
-            });
-        });
-    </script>
+<!-- ──────────────── HERO ──────────────── -->
+<div class="hero">
+  <div class="hero-badge">Property Due Diligence Report</div>
+  <h1>102 Triq il-Punent</h1>
+  <p class="hero-sub">Valletta, Malta &nbsp;·&nbsp; Housing Authority File RTB 117/2002</p>
+  <div class="hero-pills">
+    <span class="pill pill-red">No Final Deed</span>
+    <span class="pill pill-red">Succession Gap</span>
+    <span class="pill pill-amber">Multiple Heirs Required</span>
+    <span class="pill pill-amber">Clawback Risk</span>
+    <span class="pill pill-blue">Konvenju 2002 — On File</span>
+  </div>
 </div>
 
+<!-- ──────────────── MAIN ──────────────── -->
+<div class="container">
 
-<script src="gitbook/gitbook.js"></script>
-<script src="gitbook/theme.js"></script>
+  <!-- STATUS: Have vs Missing -->
+  <div class="section">
+    <div class="section-label">Document Status</div>
+    <div class="section-title">What We Have &amp; What's Still Missing</div>
+    <div class="status-grid">
+      <div class="status-card">
+        <h3><span class="dot dot-green"></span> Documents on File</h3>
+        <ul>
+          <li>2001 Sir Sid Darek scheme terms</li>
+          <li>2002 Konvenju RTB 117/2002 (full copy, Batch 1)</li>
+          <li>2002 Housing Authority letter to Commissioner of Land</li>
+          <li>Luigia's death certificate (2007)</li>
+          <li>Luigia's 1983 will &amp; will-search confirmation</li>
+          <li>Maria's death certificate (2019)</li>
+          <li>Albert's death certificate (2015)</li>
+        </ul>
+      </div>
+      <div class="status-card missing">
+        <h3><span class="dot dot-red"></span> Critical Gaps</h3>
+        <ul>
+          <li>Maria Scicluna's Public Registry will search (Art. 29)</li>
+          <li>Civil Court search for any secret will — Maria</li>
+          <li>Maria's will (if any) or declaration of heirs</li>
+          <li>Causa mortis deed: Luigia → Maria (2007)</li>
+          <li>Causa mortis deed: Maria → her heirs (2019)</li>
+          <li>Post-2002 Housing Authority correspondence file</li>
+          <li>Current HA status letter on file RTB 117/2002</li>
+          <li>Full heir list with IDs &amp; current addresses</li>
+          <li>PA site plan &amp; architect's drawings</li>
+          <li>Ground rent figure (blank in 2002 letter)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
+  <!-- CHAIN CALLOUT -->
+  <div class="callout">
+    <strong>Property Chain Summary:</strong> Luigia Sultana signed the konvenju in 2002 &rarr; Maria Scicluna inherited in 2007 &rarr; Maria's heirs now hold the claim.
+    The succession from Maria to her children has <strong>not been formally documented</strong> as a causa mortis deed. Albert (Maria's husband, d. 2015) never held the property — he is relevant only because the seller identified him as her father in the original brief.
+  </div>
 
-<script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+  <!-- CHALLENGES -->
+  <div class="section">
+    <div class="section-label">Risk Assessment</div>
+    <div class="section-title">Main Challenges — In Order of Severity</div>
+    <div class="challenges">
 
+      <div class="challenge challenge-1">
+        <div class="challenge-num">1</div>
+        <div>
+          <span class="severity sev-critical">Critical</span>
+          <h3>No final deed — and probably never will be soon</h3>
+          <p>The konvenju is 23 years old and was contingent on the Government acquiring the underlying land. The Government has admitted it cannot identify the landowner. What you would be buying is not registered ownership — it is a promise of sale plus possession. A Maltese notary may refuse to publish a deed of sale on this basis. A bank will almost certainly not lend against it. If the real landowner surfaces, they can challenge your position.</p>
+        </div>
+      </div>
 
-<script src="gitbook/gitbook-plugin-search/search.js"></script>
+      <div class="challenge challenge-2">
+        <div class="challenge-num">2</div>
+        <div>
+          <span class="severity sev-critical">Critical</span>
+          <h3>The paper trail breaks at Maria's death</h3>
+          <p>The Housing Authority and Public Registry still list Luigia Sultana (d. 2007) as counterparty on file RTB 117/2002. Neither Luigia's inheritance to Maria (2007) nor Maria's inheritance to her children (2019) has been published as a causa mortis deed. Until those are done, the seller has no paper standing to sell anything.</p>
+        </div>
+      </div>
 
+      <div class="challenge challenge-3">
+        <div class="challenge-num">3</div>
+        <div>
+          <span class="severity sev-high">High</span>
+          <h3>Multiple heirs must all sign</h3>
+          <p>Maltese succession law vests the estate equally in all of Maria's legitimate children. Every single one of them must sign the sale deed or grant a formal power of attorney. If one sibling is abroad, estranged, or uncooperative, the deal cannot complete. You do not yet know how many siblings there are.</p>
+        </div>
+      </div>
 
-<script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+      <div class="challenge challenge-4">
+        <div class="challenge-num">4</div>
+        <div>
+          <span class="severity sev-high">High</span>
+          <h3>Housing Authority may claim a clawback</h3>
+          <p>The Sir Sid Darek scheme required the flat to be the beneficiary's ordinary residence. Maria died at St Vincent de Paule nursing home in Luqa, suggesting she was not residing at 102 Triq il-Punent during her final years. The Authority may demand refund of the Lm 6,500 subsidy revalued at today's market prices — potentially €30,000+. This must be resolved before you agree a price.</p>
+        </div>
+      </div>
 
+      <div class="challenge challenge-5">
+        <div class="challenge-num">5</div>
+        <div>
+          <span class="severity sev-medium">Medium</span>
+          <h3>Likely emphyteusis, not freehold</h3>
+          <p>The 2002 letter to the Commissioner of Land refers to ground rent, strongly suggesting the land is government-owned and the arrangement is a perpetual emphyteusis with an annual ground rent in perpetuity. Normal in Malta and saleable — but you need the figure before agreeing a price.</p>
+        </div>
+      </div>
 
-<script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+    </div>
+  </div>
 
+  <!-- ACTION PLAN -->
+  <div class="section">
+    <div class="section-label">Recommended Actions</div>
+    <div class="section-title">What to Do — In Order</div>
+    <div class="actions">
 
-<script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+      <div class="action">
+        <div class="action-step">1</div>
+        <div>
+          <h3>Engage your own Maltese notary now — not the seller's</h3>
+          <p>Agree fees upfront. Do not sign anything and do not pay any deposit until your notary has completed their own independent searches.</p>
+        </div>
+      </div>
 
+      <div class="action">
+        <div class="action-step">2</div>
+        <div>
+          <h3>Have your notary write directly to the Housing Authority</h3>
+          <p>Quoting file reference RTB 117/2002, ask: is the konvenju still live; has the Government acquired title to the land; what is the Authority's current position on the scheme's residency requirements; what subsidy refund will they apply on an onward sale; and will they approve a transfer at this stage at all.</p>
+        </div>
+      </div>
 
-<script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+      <div class="action">
+        <div class="action-step">3</div>
+        <div>
+          <h3>Ask the seller to produce succession paperwork</h3>
+          <p>Maria Scicluna's Article 29 Public Registry will-search certificate; any will she made; a complete list of every one of Maria's children with ID numbers; and any causa mortis deeds already published for either Luigia's or Maria's successions. If these don't exist, the seller — at her cost — must have a notary draft and publish them before you talk about price.</p>
+        </div>
+      </div>
+
+      <div class="action">
+        <div class="action-step">4</div>
+        <div>
+          <h3>Commission an independent valuation from a Maltese architect (perit)</h3>
+          <p>Not the seller's. This tells you what the property is worth assuming clean title — then you subtract a substantial discount for everything that isn't clean.</p>
+        </div>
+      </div>
+
+      <div class="action">
+        <div class="action-step">5</div>
+        <div>
+          <h3>If and only if all of the above comes back cleanly — structure a protected konvenju</h3>
+          <p>Any konvenju you sign should make every outstanding issue a condition precedent to the final deed, with full refund of any deposit if conditions are not met within a fixed window. Your notary drafts this, not the seller's.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top: 1.8rem;">
+      <div class="priority-list">
+        <h3>Revised Shortlist — In Priority Order</h3>
+        <ol>
+          <li>Maria's succession paperwork (causa mortis deeds + will search)</li>
+          <li>Complete post-2002 Housing Authority correspondence file</li>
+          <li>Full list of Maria's heirs with IDs &amp; current addresses</li>
+          <li>Current HA status letter on file RTB 117/2002</li>
+          <li>PA site plan &amp; architect's drawings (unit boundaries)</li>
+          <li>Original 1983 Luigia will in certified form (Notarial Archives)</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOCUMENT-BY-DOCUMENT ANALYSIS -->
+  <div class="section">
+    <div class="section-label">Document-by-Document Analysis</div>
+    <div class="section-title">Revised Assessment of the Original Checklist</div>
+    <div class="doc-analysis">
+
+      <div class="doc-item">
+        <div class="doc-item-header">
+          <h3>1. "Agreement between aunt and father" (1992)</h3>
+          <span class="tag tag-note">Likely Non-Existent</span>
+        </div>
+        <div class="doc-item-body">
+          This document almost certainly does not exist — and the premise behind it is wrong. Luigia never transferred anything to any "father" in 1992. She remained the Housing Authority's tenant, personally applied to Sir Sid Darek in 2001, personally signed the konvenju in 2002, and left everything to her sister Maria by will in 2007. The seller either misremembered or is referring to an informal tenancy arrangement with no legal bearing. Still worth asking the seller what she meant — the answer is diagnostic of how well she understands her own file — but stop treating this as a document that needs to surface.
+        </div>
+      </div>
+
+      <div class="doc-item">
+        <div class="doc-item-header">
+          <h3>2. "POS from 2003"</h3>
+          <span class="tag tag-done">On File — 2002</span>
+        </div>
+        <div class="doc-item-body">
+          You have this. It is from 2002, not 2003: the Konvenju RTB 117/2002, signed 22 October 2002 before Notary Schembri Adami. The Batch 1 copy (7-page PDF) is the complete version. SCAN 2 is abridged and missing the hypothec and rental-termination clauses — work from Batch 1 only.
+        </div>
+      </div>
+
+      <div class="doc-item">
+        <div class="doc-item-header">
+          <h3>3. Housing Authority correspondence</h3>
+          <span class="tag tag-partial">Partial — Post-2002 Missing</span>
+        </div>
+        <div class="doc-item-body">
+          You have the 11 November 2002 Housing Authority letter to the Commissioner of Land. What you don't have is anything after that. The seller's brief mentioned "several letters exchanged" and "the government updated that it could not locate the owner of the land." That correspondence trail is the single most important thing still missing on the HA side — it tells you exactly how stuck the file is and why. Ask the seller for the complete correspondence file: every letter in and every letter out.
+        </div>
+      </div>
+
+      <div class="doc-item">
+        <div class="doc-item-header">
+          <h3>4. Site plans</h3>
+          <span class="tag tag-missing">Missing</span>
+        </div>
+        <div class="doc-item-body">
+          Not yet produced. Ask specifically for: the Planning Authority (PA) site plan for 102 Triq il-Punent, Valletta, and any architect's drawings showing unit boundaries. Your independent valuer will need these, and your notary will want to verify the footprint matches what's being sold. Note: Konvenju Clause 13 mentions common access, shared stairs, and excludes the roof — the exact scope of what you'd be buying depends on these plans.
+        </div>
+      </div>
+
+      <div class="doc-item">
+        <div class="doc-item-header">
+          <h3>5. Succession documents — Luigia &amp; Maria</h3>
+          <span class="tag tag-missing">Critical — Missing</span>
+        </div>
+        <div class="doc-item-body">
+          Still needed: Luigia's original 1983 will in certified form (from Notary Joseph Cachia's acts or the Notarial Archives); Luigia's causa mortis deed (estate passing to Maria, 2007); Maria's Public Registry will search (Art. 29 certificate); Maria's Civil Court search for any secret will; Maria's will itself (if any); and Maria's causa mortis deed (estate passing to her heirs, 2019). If either causa mortis deed was never published, those must be done — at the seller's cost — before you can proceed.
+        </div>
+      </div>
+
+      <div class="doc-item">
+        <div class="doc-item-header">
+          <h3>6. Who signs the deed?</h3>
+          <span class="tag tag-missing">Unresolved</span>
+        </div>
+        <div class="doc-item-body">
+          The answer on paper is: every single one of Maria Scicluna's heirs must sign. It is not a matter of one family member being designated "the seller." Unless there is a formal power of attorney from the other heirs to one of them, all are required at the deed. You need: the full list of Maria's heirs with IDs and current addresses; confirmation that none are minors or deceased with their own sub-heirs; confirmation all are willing to sell (in writing); and whether one will act by POA or all will appear in person. Until you have these — in writing, verifiable against succession paperwork — you have a single family member who says she speaks for everyone. This is the question that most often kills Maltese inherited-property deals.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ──────────────── DOCUMENT GALLERY ──────────────── -->
+<div class="container">
+  <div class="gallery-section">
+    <div class="section-label">Document Archive</div>
+    <div class="section-title">Scanned Documents</div>
+    <p style="font-family: 'Inter', sans-serif; font-size: .88rem; color: var(--muted); margin-bottom: 2rem;">Click any document to view full-size. Documents are grouped by source.</p>
+
+    <!-- Sir Sid Darek -->
+    <div class="gallery-group">
+      <div class="gallery-group-title">Sir Sid Darek Scheme — Application &amp; Terms (2001) &nbsp;<span style="font-weight:400; color: var(--muted); font-size:.82rem;">11 pages</span></div>
+      <div class="gallery-grid" id="group-ssd">
+        <div class="gallery-item" onclick="openLightbox('ssd', 0)">
+          <img src="Sir sid darek- pg1.jpg" alt="Sir Sid Darek - Page 1" loading="lazy">
+          <div class="gallery-item-label">Sir Sid Darek — Pg 1</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('ssd', 1)">
+          <img src="Sir sid darek- pg2.jpg" alt="Sir Sid Darek - Page 2" loading="lazy">
+          <div class="gallery-item-label">Sir Sid Darek — Pg 2</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('ssd', 2)">
+          <img src="Sir sid darek- pg3.jpg" alt="Sir Sid Darek - Page 3" loading="lazy">
+          <div class="gallery-item-label">Sir Sid Darek — Pg 3</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('ssd', 3)">
+          <img src="Sir sid darek- pg4.jpg" alt="Sir Sid Darek - Page 4" loading="lazy">
+          <div class="gallery-item-label">Sir Sid Darek — Pg 4</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('ssd', 4)">
+          <img src="Sir sid darek- pg5.jpg" alt="Sir Sid Darek - Page 5" loading="lazy">
+          <div class="gallery-item-label">Sir Sid Darek — Pg 5</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('ssd', 5)">
+          <img src="Sir sid darek- pg6.jpg" alt="Sir Sid Darek - Page 6" loading="lazy">
+          <div class="gallery-item-label">Sir Sid Darek — Pg 6</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('ssd', 6)">
+          <img src="Sir sid darek- pg7.jpg" alt="Sir Sid Darek - Page 7" loading="lazy">
+          <div class="gallery-item-label">Sir Sid Darek — Pg 7</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('ssd', 7)">
+          <img src="Sir sid darek- pg8.jpg" alt="Sir Sid Darek - Page 8" loading="lazy">
+          <div class="gallery-item-label">Sir Sid Darek — Pg 8</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('ssd', 8)">
+          <img src="Sir sid darek- pg9.jpg" alt="Sir Sid Darek - Page 9" loading="lazy">
+          <div class="gallery-item-label">Sir Sid Darek — Pg 9</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('ssd', 9)">
+          <img src="Sir sid darek- pg10.jpg" alt="Sir Sid Darek - Page 10" loading="lazy">
+          <div class="gallery-item-label">Sir Sid Darek — Pg 10</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('ssd', 10)">
+          <img src="Sir sid darek- pg11.jpg" alt="Sir Sid Darek - Page 11" loading="lazy">
+          <div class="gallery-item-label">Sir Sid Darek — Pg 11</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Konvenju SCAN 2 -->
+    <div class="gallery-group">
+      <div class="gallery-group-title">Konvenju RTB 117/2002 — Abridged Scan &nbsp;<span style="font-weight:400; color: var(--muted); font-size:.82rem;">5 pages · missing hypothec &amp; rental-termination clauses</span></div>
+      <div class="gallery-grid" id="group-scan2">
+        <div class="gallery-item" onclick="openLightbox('scan2', 0)">
+          <img src="SCAN 2-PG 1.jpg" alt="Scan 2 - Page 1" loading="lazy">
+          <div class="gallery-item-label">Scan 2 — Pg 1</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('scan2', 1)">
+          <img src="SCAN 2-PG 2.jpg" alt="Scan 2 - Page 2" loading="lazy">
+          <div class="gallery-item-label">Scan 2 — Pg 2</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('scan2', 2)">
+          <img src="SCAN 2-PG 3.jpg" alt="Scan 2 - Page 3" loading="lazy">
+          <div class="gallery-item-label">Scan 2 — Pg 3</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('scan2', 3)">
+          <img src="SCAN 2-PG 4.jpg" alt="Scan 2 - Page 4" loading="lazy">
+          <div class="gallery-item-label">Scan 2 — Pg 4</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('scan2', 4)">
+          <img src="SCAN 2-PG 5.jpg" alt="Scan 2 - Page 5" loading="lazy">
+          <div class="gallery-item-label">Scan 2 — Pg 5</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Public Registry -->
+    <div class="gallery-group">
+      <div class="gallery-group-title">Public Registry — Luigia Sultana Will Search &amp; Article 29 Certificate &nbsp;<span style="font-weight:400; color: var(--muted); font-size:.82rem;">8 pages</span></div>
+      <div class="gallery-grid" id="group-pr">
+        <div class="gallery-item" onclick="openLightbox('pr', 0)">
+          <img src="Public registry- Pg 1.jpg" alt="Public Registry - Page 1" loading="lazy">
+          <div class="gallery-item-label">Public Registry — Pg 1</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('pr', 1)">
+          <img src="Public registry- Pg 2.jpg" alt="Public Registry - Page 2" loading="lazy">
+          <div class="gallery-item-label">Public Registry — Pg 2</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('pr', 2)">
+          <img src="Public registry- Pg 3.jpg" alt="Public Registry - Page 3" loading="lazy">
+          <div class="gallery-item-label">Public Registry — Pg 3</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('pr', 3)">
+          <img src="Public registry- Pg 4.jpg" alt="Public Registry - Page 4" loading="lazy">
+          <div class="gallery-item-label">Public Registry — Pg 4</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('pr', 4)">
+          <img src="Public registry- Pg 5.jpg" alt="Public Registry - Page 5" loading="lazy">
+          <div class="gallery-item-label">Public Registry — Pg 5</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('pr', 5)">
+          <img src="Public registry- Pg 6.jpg" alt="Public Registry - Page 6" loading="lazy">
+          <div class="gallery-item-label">Public Registry — Pg 6</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('pr', 6)">
+          <img src="Public registry- form 2- pg 1.jpg" alt="Public Registry Form 2 - Page 1" loading="lazy">
+          <div class="gallery-item-label">Public Registry Form 2 — Pg 1</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('pr', 7)">
+          <img src="Public registry- form 2- pg 2- part 1.jpg" alt="Public Registry Form 2 - Page 2 Part 1" loading="lazy">
+          <div class="gallery-item-label">Form 2 — Pg 2 Part 1</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('pr', 8)">
+          <img src="Public registry- form 2- pg 2- part 2.jpg" alt="Public Registry Form 2 - Page 2 Part 2" loading="lazy">
+          <div class="gallery-item-label">Form 2 — Pg 2 Part 2</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ──────────────── FOOTER ──────────────── -->
+<footer>
+  <p>102 Triq il-Punent, Valletta &nbsp;·&nbsp; Housing Authority File RTB 117/2002 &nbsp;·&nbsp; Due Diligence Report</p>
+  <p style="margin-top:.5rem; color: #334a66;">This document is for informational purposes only and does not constitute legal advice. Engage a Maltese notary before taking any action.</p>
+</footer>
+
+<!-- ──────────────── LIGHTBOX ──────────────── -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOnBackdrop(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">&#215;</button>
+  <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">&#8249;</button>
+  <img id="lightbox-img" src="" alt="">
+  <p class="lightbox-caption" id="lightbox-caption"></p>
+  <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">&#8250;</button>
+</div>
+
 <script>
+  const groups = {
+    ssd: [
+      { src: 'Sir sid darek- pg1.jpg',  label: 'Sir Sid Darek — Page 1' },
+      { src: 'Sir sid darek- pg2.jpg',  label: 'Sir Sid Darek — Page 2' },
+      { src: 'Sir sid darek- pg3.jpg',  label: 'Sir Sid Darek — Page 3' },
+      { src: 'Sir sid darek- pg4.jpg',  label: 'Sir Sid Darek — Page 4' },
+      { src: 'Sir sid darek- pg5.jpg',  label: 'Sir Sid Darek — Page 5' },
+      { src: 'Sir sid darek- pg6.jpg',  label: 'Sir Sid Darek — Page 6' },
+      { src: 'Sir sid darek- pg7.jpg',  label: 'Sir Sid Darek — Page 7' },
+      { src: 'Sir sid darek- pg8.jpg',  label: 'Sir Sid Darek — Page 8' },
+      { src: 'Sir sid darek- pg9.jpg',  label: 'Sir Sid Darek — Page 9' },
+      { src: 'Sir sid darek- pg10.jpg', label: 'Sir Sid Darek — Page 10' },
+      { src: 'Sir sid darek- pg11.jpg', label: 'Sir Sid Darek — Page 11' },
+    ],
+    scan2: [
+      { src: 'SCAN 2-PG 1.jpg', label: 'Konvenju Scan — Page 1' },
+      { src: 'SCAN 2-PG 2.jpg', label: 'Konvenju Scan — Page 2' },
+      { src: 'SCAN 2-PG 3.jpg', label: 'Konvenju Scan — Page 3' },
+      { src: 'SCAN 2-PG 4.jpg', label: 'Konvenju Scan — Page 4' },
+      { src: 'SCAN 2-PG 5.jpg', label: 'Konvenju Scan — Page 5' },
+    ],
+    pr: [
+      { src: 'Public registry- Pg 1.jpg',              label: 'Public Registry — Page 1' },
+      { src: 'Public registry- Pg 2.jpg',              label: 'Public Registry — Page 2' },
+      { src: 'Public registry- Pg 3.jpg',              label: 'Public Registry — Page 3' },
+      { src: 'Public registry- Pg 4.jpg',              label: 'Public Registry — Page 4' },
+      { src: 'Public registry- Pg 5.jpg',              label: 'Public Registry — Page 5' },
+      { src: 'Public registry- Pg 6.jpg',              label: 'Public Registry — Page 6' },
+      { src: 'Public registry- form 2- pg 1.jpg',      label: 'Public Registry Form 2 — Page 1' },
+      { src: 'Public registry- form 2- pg 2- part 1.jpg', label: 'Public Registry Form 2 — Page 2 Part 1' },
+      { src: 'Public registry- form 2- pg 2- part 2.jpg', label: 'Public Registry Form 2 — Page 2 Part 2' },
+    ]
+  };
 
+  let currentGroup = null;
+  let currentIndex = 0;
 
-    class Circle{
-        constructor(x,y){
-            this.x = x;
-            this.y = y;
-            this.r = Math.random()*14+1;
-            this._mx = Math.random()*2-1;
-            this._my = Math.random()*2-1
-        }
-        drawCircle(ctx){
-            ctx.beginPath();
-            // arc(x, y, radius, startAngle, 开始, 结束)
-            ctx.arc(this.x,this.y,this.r,0,360);
-            ctx.closePath();
-            ctx.fillStyle='rgba(204, 204, 204, 0.2)';
-            // 当你调用fill()函数时，所有没有闭合的形状都会自动闭合，所以你不需要调用closePath()函数。但是调用stroke()时不会自动闭合。
-            ctx.fill();
-        }
-        drawLine(ctx,_cirle){
-            // 画直线是两个圆连线，为了避免直线过多，给圆圈距离设置了一个值，距离很远的圆圈，就不做连线处理
-            let dx = this.x - _cirle.x;
-            let dy = this.y - _cirle.y;
-            let d = Math.sqrt(dx * dx + dy * dy);
-            if(d<150){
-                ctx.beginPath();
-                ctx.moveTo(this.x,this.y);
-                ctx.lineTo(_cirle.x,_cirle.y);
-                ctx.closePath();
-                ctx.strokeStyle='rgba(204, 204, 204, 0.1)';
-                ctx.stroke();
-            }
-        }
+  function openLightbox(group, index) {
+    currentGroup = group;
+    currentIndex = index;
+    updateLightbox();
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
 
-        move(w,h){
-            this._mx= (this.x < w && this.x >0) ? this._mx:( - this._mx);
-            this._my = ( this.y <h && this.y >0) ? this._my: ( - this._my);
-            this.x += this._mx;
-            this.y += this._my;
+  function updateLightbox() {
+    const item = groups[currentGroup][currentIndex];
+    document.getElementById('lightbox-img').src = item.src;
+    document.getElementById('lightbox-caption').textContent =
+      item.label + ' (' + (currentIndex + 1) + ' / ' + groups[currentGroup].length + ')';
+  }
 
-        }
-    }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
 
-    class currentCircle extends Circle {
-        // 子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。
-        constructor(x,y){
-            super(x,y);
-        }
-        drawCircle(ctx){
-            ctx.beginPath();
-            this.r = (this.r <14 && this.r>1)? this.r+(Math.random()*2-1):2;
-            ctx.arc(this.x,this.y,this.r,0,360);
-            ctx.closePath();
-            ctx.fillStyle='rgba(45, 120, 244, ' + (parseInt(Math.random()*100)/100) + ')';
-            ctx.fill();
-        }
-    }
+  function closeLightboxOnBackdrop(e) {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  }
 
+  function navLightbox(dir) {
+    const len = groups[currentGroup].length;
+    currentIndex = (currentIndex + dir + len) % len;
+    updateLightbox();
+  }
 
-
-    window.requestAnimationFrame = window.requestAnimationFrame ||window.mozRequestAnimationFrame ||window.webkitRequestAnimationFrame ||window.msRequestAnimationFrame;
-    let canvans = document.getElementById('canvas');
-    canvas.width = document.body.clientWidth;
-    canvas.height = document.body.clientHeight;
-    let ctx = canvans.getContext('2d');
-    let w = canvans.width = canvans.offsetWidth;
-    let h = canvans.height = canvans.offsetHeight;
-    let circles = [];
-    let current_circle  = new currentCircle(0, 0);
-
-    let draw = function () {
-        // clearRect(x, y, width, height),清除指定矩形区域，让清除部分完全透明。
-        ctx.clearRect(0,0,w,h);
-        for(let i=0 ;i<circles.length;i++){
-            circles[i].move(w,h);
-            circles[i].drawCircle(ctx);
-            for(j=i+1; j<circles.length; j++){
-                circles[i].drawLine(ctx,circles[j])
-            }
-        }
-        if(current_circle.x){
-            currentCircle.drawCircle(ctx);
-            for(let k=1 ;k<circles.length; circles++){
-                currentCircle.drawLine(ctx,circles[k])
-            }
-        }
-        requestAnimationFrame(draw);
-    };
-
-    let init = function (num) {
-        for(var i=0; i<num ;i++){
-            circles.push(new Circle(Math.random()*w,Math.random()*h))
-        }
-        draw();
-    };
-
-    window.addEventListener('load',init(80));
-    window.onmouseove = function (e) {
-        e= e ||window.event;
-        currentCircle.x = e.clientX;
-        currentCircle.y = e.clientY;
-    };
-    window.onmouseout = function () {
-        currentCircle.x = null;
-        currentCircle.y = null;
-    };
-
-    var menuList = [
-        {
-            name:'Quora问答网站',
-            url:'https://www.quora.com/',
-            icon:'gitbook/images/quora.png'
-        },
-        {
-            name:'youtube视频',
-            url:'https://www.youtube.com/',
-            icon:'gitbook/images/youtube.png'
-        },
-        {
-            name:'twitter推特',
-            url:'https://www.twitter.com/',
-            icon:'gitbook/images/twitter.png'
-        },
-        {
-            name:'instagram照片墙',
-            url:'https://www.instagram.com/',
-            icon:'gitbook/images/ins.png'
-        },
-        {
-            name:'Coursera公开课',
-            url:'https://www.coursera.org/',
-            icon:'gitbook/images/jiaoyu.png'
-        },
-        {
-            name:'Ted演讲',
-            url:'https://www.ted.com/',
-            icon:'gitbook/images/ted.png'
-        },
-        {
-            name:'烂番茄新鲜度',
-            url:'https://www.rottentomatoes.com/',
-            icon:'gitbook/images/lanfanqie.png'
-        },
-        {
-            name:'IMDB影评',
-            url:'https://www.imdb.com/',
-            icon:'gitbook/images/ibm.png'
-        },
-        {
-            name:'StackExchange',
-            url:'https://www.stackexchange.com/',
-            icon:'gitbook/images/stackexchange.png'
-        },
-        {
-            name:'CNN美国新闻网',
-            url:'https://www.cnn.com/',
-            icon:'gitbook/images/cnn.png'
-        },
-        {
-            name:'英国广播公司',
-            url:'http://www.bbc.com/news',
-            icon:'gitbook/images/bbc.png'
-        },
-        {
-            name:'雅虎新闻网',
-            url:'https://www.yahoo.com/news',
-            icon:'gitbook/images/yahu.png'
-        },
-        {
-            name:'Nature科学期刊',
-            url:'https://www.nature.com/',
-            icon:'gitbook/images/nature.png'
-        },
-        {
-            name:'Time时代杂志',
-            url:'https://www.time.com/',
-            icon:'gitbook/images/time.png'
-        },
-        {
-            name:'Wikipedia维基百科',
-            url:'https://en.wikipedia.org/wiki/Main_Page',
-            icon:'gitbook/images/wiki.png'
-        },
-        {
-            name:'美国国家航空航天局',
-            url:'https://www.nasa.gov/',
-            icon:'gitbook/images/nasa.png'
-        },
-        {
-            name:'联合国难民署',
-            url:'http://www.unhcr.org/',
-            icon:'gitbook/images/nanmin.png'
-        },
-        {
-            name:'engadget瘾科技',
-            url:'https://www.engadget.com/',
-            icon:'gitbook/images/engadget.png'
-        },
-        {
-            name:'单词学习词库',
-            url:'https://www.vocabulary.com/dictionary/test',
-            icon:'gitbook/images/vocabulary.png'
-        },
-        {
-            name:'技术爱好者科技',
-            url:'https://www.cnet.com/',
-            icon:'gitbook/images/cnet.png'
-        },
-        {
-            name:'github开源代码库',
-            url:'https://www.github.com/',
-            icon:'gitbook/images/github.png'
-        },
-        {
-            name:'Tumblr轻博客',
-            url:'https://www.tumblr.com/',
-            icon:'gitbook/images/tumblr.png'
-        },
-        {
-            name:'goodreads读书社区',
-            url:'https://www.goodreads.com/',
-            icon:'gitbook/images/book.png'
-        },
-        {
-            name:'googleMap',
-            url:'http://www.google.cn/maps',
-            icon:'gitbook/images/map.jpeg'
-        }
-    ];
-    letlistHtml = '';
-    for(var i =0;i<menuList.length;i++){
-        letlistHtml+='<li style="background-image:url('+menuList[i].icon+');background-size: 40px"><a href="'+menuList[i].url+'" target="_blank">'+menuList[i].name+'</a>' +
-            '</li>'
-    };
-    $('#listDom').append(letlistHtml);
-//    if(document.body.clientWidth<350){
-//        document.getElementsByClassName('serchInput')[0].style.display='none'
-//    }
+  document.addEventListener('keydown', function(e) {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape')      closeLightbox();
+    if (e.key === 'ArrowRight')  navLightbox(1);
+    if (e.key === 'ArrowLeft')   navLightbox(-1);
+  });
 </script>
+
 </body>
 </html>
-
