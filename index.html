@@ -1,974 +1,2016 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>102 Punent, Il-Belt Valletta — Property Due Diligence</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      /* ── Backgrounds ── */
-      --bg:        #f0ebe0;   /* warm Maltese limestone parchment */
-      --surface:   #ffffff;
-      --surface-2: #faf7f2;
-      --border:    #d9d0c2;   /* warm stone */
-      --border-lt: #ece6db;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Due Diligence Report — 102 Punent, Il-Belt Valletta</title>
+<style>
+  :root {
+    --navy: #0d2b18;
+    --navy-mid: #153a22;
+    --blue: #1e6640;
+    --blue-light: #268a54;
+    --gold: #c8924a;
+    --gold-light: #e8d4a8;
+    --bg: #edf4ee;
+    --bg-card: #ffffff;
+    --text: #162518;
+    --text-muted: #527060;
+    --border: #bdd5c5;
+    --critical: #dc2626;
+    --critical-bg: #fef2f2;
+    --critical-border: #fecaca;
+    --high: #c05621;
+    --high-bg: #fff4ee;
+    --high-border: #f7c8a8;
+    --medium: #b07d10;
+    --medium-bg: #fdf8e8;
+    --medium-border: #eed98a;
+    --low: #1a7a40;
+    --low-bg: #edfaf2;
+    --low-border: #9ed9b8;
+    --sidebar-w: 260px;
+  }
 
-      /* ── Text ── */
-      --ink:   #141e2d;   /* deep ink */
-      --text:  #28384e;
-      --muted: #6e7f96;
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-      /* ── Limestone Gold (primary accent) ── */
-      --gold:     #8a5c0a;   /* burnished, not brash */
-      --gold-mid: #b87c18;
-      --gold-lt:  #fdf3dc;
-      --gold-bd:  #ddb96a;
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
 
-      /* ── Mediterranean Blue (secondary accent) ── */
-      --navy:     #0e2240;   /* deep Maltese sea */
-      --blue:     #1e4d9b;
-      --blue-lt:  #e6eef9;
-      --blue-bd:  #7da4dc;
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: var(--sidebar-w);
+    height: 100vh;
+    background: var(--navy);
+    overflow-y: auto;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 24px;
+  }
 
-      /* ── Status: Crimson (critical) ── */
-      --red:    #8c1a2a;
-      --red-lt: #fdf0f2;
-      --red-bd: #f0b8c0;
+  #sidebar .logo {
+    padding: 24px 20px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
 
-      /* ── Status: Sienna (high) ── */
-      --amber:    #7c3410;
-      --amber-lt: #fef6ee;
-      --amber-bd: #f0c09a;
+  #sidebar .logo h1 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.3;
+  }
 
-      /* ── Status: Forest (done) ── */
-      --green:    #145238;
-      --green-lt: #eef9f4;
-      --green-bd: #8ed5b4;
+  #sidebar .logo p {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+    font-family: sans-serif;
+  }
 
-      /* ── Status: Slate (neutral) ── */
-      --slate:    #3a5068;
-      --slate-lt: #eef2f7;
-      --slate-bd: #9ab4cc;
+  #sidebar nav { padding: 12px 0; }
 
-      --radius:    12px;
-      --shadow:    0 1px 4px rgba(14,34,64,.06), 0 2px 12px rgba(14,34,64,.07);
-      --shadow-lg: 0 4px 16px rgba(14,34,64,.10), 0 12px 32px rgba(14,34,64,.10);
-    }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 12px;
+    font-family: 'Arial', sans-serif;
+    transition: all 0.15s;
+    border-left: 3px solid transparent;
+  }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  #sidebar nav a:hover,
+  #sidebar nav a.active {
+    color: #fff;
+    background: rgba(255,255,255,0.07);
+    border-left-color: var(--gold);
+  }
 
-    body {
-      font-family: 'Lora', 'Georgia', serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-    }
+  #sidebar nav .nav-section {
+    padding: 16px 20px 4px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.3);
+    font-family: sans-serif;
+  }
 
-    /* ── HERO ── */
-    .hero {
-      background: linear-gradient(160deg, #080f1c 0%, #0e2240 55%, #1a3a7a 100%);
-      color: #fff;
-      padding: 4rem 2rem 3.5rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 60% 0%, rgba(200,155,30,.12) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .hero-badge {
-      display: inline-block;
-      background: rgba(200,155,30,.18);
-      border: 1px solid rgba(200,155,30,.45);
-      color: #e8c87a;
-      font-family: 'Inter', sans-serif;
-      font-size: .68rem;
-      font-weight: 600;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      padding: .32rem 1rem;
-      border-radius: 99px;
-      margin-bottom: 1.4rem;
-    }
-    .hero h1 {
-      font-family: 'Lora', serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 700;
-      letter-spacing: -.02em;
-      margin-bottom: .5rem;
-      color: #f5f0e8;
-    }
-    .hero-sub {
-      font-family: 'Inter', sans-serif;
-      font-size: .95rem;
-      font-weight: 400;
-      color: #7da4dc;
-      margin-bottom: 2rem;
-      letter-spacing: .02em;
-    }
-    .hero-pills {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: .55rem;
-    }
-    .pill {
-      font-family: 'Inter', sans-serif;
-      font-size: .73rem;
-      font-weight: 500;
-      padding: .32rem .9rem;
-      border-radius: 99px;
-      border: 1px solid;
-      letter-spacing: .01em;
-    }
-    .pill-red   { background: rgba(140,26,42,.30); border-color: rgba(240,184,192,.35); color: #f5b8c3; }
-    .pill-amber { background: rgba(124,52,16,.28); border-color: rgba(240,192,154,.35); color: #f0c09a; }
-    .pill-blue  { background: rgba(30,77,155,.30); border-color: rgba(125,164,220,.35); color: #93bce8; }
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    min-height: 100vh;
+  }
 
-    /* ── LAYOUT ── */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-    .section { padding: 3rem 0; }
-    .section + .section { border-top: 1px solid var(--border-lt); }
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #0a3d1e 100%);
+    padding: 60px 56px 50px;
+    color: #fff;
+    border-bottom: 4px solid var(--gold);
+  }
 
-    .section-label {
-      font-family: 'Inter', sans-serif;
-      font-size: .68rem;
-      font-weight: 700;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--gold-mid);
-      margin-bottom: .45rem;
-    }
-    .section-title {
-      font-family: 'Lora', serif;
-      font-size: 1.65rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 1.5rem;
-      letter-spacing: -.01em;
-    }
+  .hero .tag {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    font-family: sans-serif;
+  }
 
-    /* ── STATUS GRID ── */
-    .status-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-    }
-    @media (max-width: 640px) { .status-grid { grid-template-columns: 1fr; } }
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    color: #fff;
+  }
 
-    .status-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.6rem;
-      box-shadow: var(--shadow);
-    }
-    .status-card h3 {
-      font-family: 'Inter', sans-serif;
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .10em;
-      text-transform: uppercase;
-      color: var(--ink);
-      margin-bottom: 1.1rem;
-      display: flex; align-items: center; gap: .55rem;
-    }
-    .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-    .dot-green { background: var(--green); }
-    .dot-red   { background: var(--red); }
-    .status-card ul { list-style: none; }
-    .status-card li {
-      font-family: 'Inter', sans-serif;
-      font-size: .855rem;
-      padding: .48rem 0;
-      border-bottom: 1px solid var(--border-lt);
-      color: var(--text);
-      display: flex; align-items: baseline; gap: .6rem;
-    }
-    .status-card li:last-child { border-bottom: none; }
-    .status-card li::before {
-      content: '✓';
-      color: var(--green);
-      font-weight: 700;
-      font-size: .78rem;
-      flex-shrink: 0;
-    }
-    .status-card.missing li::before {
-      content: '✗';
-      color: var(--red);
-    }
+  .hero .subtitle {
+    font-size: 16px;
+    color: var(--gold-light);
+    margin-bottom: 28px;
+  }
 
-    /* ── CHALLENGE CARDS ── */
-    .challenges { display: flex; flex-direction: column; gap: .9rem; }
-    .challenge {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 4px solid;
-      border-radius: var(--radius);
-      padding: 1.4rem 1.6rem;
-      box-shadow: var(--shadow);
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 1rem;
-      align-items: start;
-    }
-    .challenge-1 { border-left-color: #8c1a2a; }
-    .challenge-2 { border-left-color: #a52234; }
-    .challenge-3 { border-left-color: #7c3410; }
-    .challenge-4 { border-left-color: #a04a18; }
-    .challenge-5 { border-left-color: #1e4d9b; }
+  .hero .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
 
-    .challenge-num {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--border);
-      line-height: 1;
-      width: 2.2rem;
-      text-align: center;
-      letter-spacing: -.03em;
-    }
-    .challenge h3 {
-      font-family: 'Lora', serif;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--navy);
-      margin-bottom: .4rem;
-    }
-    .challenge p {
-      font-family: 'Inter', sans-serif;
-      font-size: .86rem;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-    .challenge .severity {
-      font-family: 'Inter', sans-serif;
-      font-size: .67rem;
-      font-weight: 700;
-      letter-spacing: .10em;
-      text-transform: uppercase;
-      padding: .22rem .65rem;
-      border-radius: 99px;
-      display: inline-block;
-      margin-bottom: .55rem;
-    }
-    .sev-critical {
-      background: var(--red-lt);
-      color: var(--red);
-      border: 1px solid var(--red-bd);
-    }
-    .sev-high {
-      background: var(--amber-lt);
-      color: var(--amber);
-      border: 1px solid var(--amber-bd);
-    }
-    .sev-medium {
-      background: var(--blue-lt);
-      color: var(--blue);
-      border: 1px solid var(--blue-bd);
-    }
+  .hero .meta-item label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.4);
+    font-family: sans-serif;
+    display: block;
+    margin-bottom: 4px;
+  }
 
-    /* ── ACTION STEPS ── */
-    .actions { display: flex; flex-direction: column; gap: .75rem; }
-    .action {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem 1.5rem;
-      box-shadow: var(--shadow);
-      display: grid;
-      grid-template-columns: 2.5rem 1fr;
-      gap: 1rem;
-      align-items: start;
-    }
-    .action-step {
-      width: 2.2rem; height: 2.2rem;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-mid) 100%);
-      color: #fff;
-      border-radius: 50%;
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: .88rem;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      box-shadow: 0 2px 8px rgba(138,92,10,.30);
-    }
-    .action h3 {
-      font-family: 'Lora', serif;
-      font-size: .95rem;
-      font-weight: 600;
-      color: var(--navy);
-      margin-bottom: .3rem;
-    }
-    .action p {
-      font-family: 'Inter', sans-serif;
-      font-size: .84rem;
-      color: var(--muted);
-      line-height: 1.65;
-    }
+  .hero .meta-item span {
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    font-family: sans-serif;
+  }
 
-    /* ── PRIORITY LIST ── */
-    .priority-list {
-      background: linear-gradient(135deg, #0a1828 0%, #0e2240 100%);
-      border: 1px solid rgba(221,185,106,.18);
-      border-radius: var(--radius);
-      padding: 2rem 2.2rem;
-      box-shadow: var(--shadow-lg);
-    }
-    .priority-list h3 {
-      font-family: 'Inter', sans-serif;
-      font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--gold-bd);
-      margin-bottom: 1.3rem;
-    }
-    .priority-list ol {
-      list-style: none;
-      counter-reset: priority;
-      display: flex;
-      flex-direction: column;
-      gap: .7rem;
-    }
-    .priority-list li {
-      counter-increment: priority;
-      font-family: 'Inter', sans-serif;
-      font-size: .875rem;
-      color: #c8d8ec;
-      display: flex; align-items: center; gap: .85rem;
-    }
-    .priority-list li::before {
-      content: counter(priority);
-      font-weight: 700;
-      font-size: .72rem;
-      color: var(--gold-bd);
-      background: rgba(221,185,106,.12);
-      border: 1px solid rgba(221,185,106,.28);
-      border-radius: 50%;
-      min-width: 1.6rem; height: 1.6rem;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
+  /* ── TRAFFIC LIGHT ── */
+  .traffic-light-banner {
+    background: #1a0000;
+    border-left: 6px solid var(--critical);
+    padding: 20px 56px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
 
-    /* ── DOCUMENT ANALYSIS ── */
-    .doc-analysis { display: flex; flex-direction: column; gap: 1.25rem; }
-    .doc-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-    .doc-item-header {
-      background: var(--surface-2);
-      border-bottom: 1px solid var(--border-lt);
-      padding: 1rem 1.5rem;
-      display: flex; align-items: center; gap: .8rem;
-    }
-    .doc-item-header h3 {
-      font-family: 'Lora', serif;
-      font-size: .95rem;
-      font-weight: 600;
-      color: var(--navy);
-      flex: 1;
-    }
-    .tag {
-      font-family: 'Inter', sans-serif;
-      font-size: .65rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .09em;
-      padding: .22rem .65rem;
-      border-radius: 99px;
-      white-space: nowrap;
-      border: 1px solid;
-    }
-    .tag-done    { background: var(--green-lt);  color: var(--green);  border-color: var(--green-bd); }
-    .tag-missing { background: var(--red-lt);    color: var(--red);    border-color: var(--red-bd); }
-    .tag-partial { background: var(--amber-lt);  color: var(--amber);  border-color: var(--amber-bd); }
-    .tag-note    { background: var(--slate-lt);  color: var(--slate);  border-color: var(--slate-bd); }
+  .tl-dot {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(220,38,38,0.6);
+    background: var(--critical);
+    animation: pulse 2s infinite;
+  }
 
-    .doc-item-body {
-      padding: 1.2rem 1.5rem;
-      font-family: 'Inter', sans-serif;
-      font-size: .865rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(220,38,38,0.6); }
+    50% { box-shadow: 0 0 35px rgba(220,38,38,0.9); }
+  }
 
-    /* ── GALLERY ── */
-    .gallery-section { padding: 3rem 0; border-top: 1px solid var(--border-lt); }
-    .gallery-group { margin-bottom: 3rem; }
-    .gallery-group-title {
-      font-family: 'Inter', sans-serif;
-      font-size: .92rem;
-      font-weight: 600;
-      color: var(--navy);
-      padding: .65rem 1.1rem;
-      background: linear-gradient(to right, var(--gold-lt), var(--surface-2));
-      border-left: 3px solid var(--gold-mid);
-      border-radius: 0 var(--radius) var(--radius) 0;
-      margin-bottom: 1.2rem;
-    }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-      gap: 1rem;
-    }
-    .gallery-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      cursor: pointer;
-      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-    }
-    .gallery-item:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--gold-bd);
-    }
-    .gallery-item img {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      object-position: top;
-      display: block;
-      background: var(--bg);
-    }
-    .gallery-item-label {
-      font-family: 'Inter', sans-serif;
-      font-size: .72rem;
-      color: var(--muted);
-      padding: .5rem .75rem;
-      border-top: 1px solid var(--border-lt);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+  .tl-text strong {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    font-family: sans-serif;
+  }
 
-    /* ── LIGHTBOX ── */
-    .lightbox {
-      display: none;
-      position: fixed; inset: 0;
-      background: rgba(8,15,28,.94);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      flex-direction: column;
-    }
-    .lightbox.open { display: flex; }
-    .lightbox img {
-      max-width: 90vw;
-      max-height: 85vh;
-      object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 24px 64px rgba(0,0,0,.6);
-    }
-    .lightbox-caption {
-      color: #7da4dc;
-      font-family: 'Inter', sans-serif;
-      font-size: .82rem;
-      margin-top: .9rem;
-      text-align: center;
-    }
-    .lightbox-close {
-      position: fixed; top: 1.2rem; right: 1.5rem;
-      color: #fff; font-size: 1.8rem;
-      cursor: pointer; background: none; border: none;
-      line-height: 1; opacity: .55; transition: opacity .15s;
-    }
-    .lightbox-close:hover { opacity: 1; }
-    .lightbox-nav {
-      position: fixed;
-      top: 50%; transform: translateY(-50%);
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.16);
-      color: #fff;
-      font-size: 1.4rem;
-      width: 3rem; height: 3rem;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background .15s;
-    }
-    .lightbox-nav:hover { background: rgba(255,255,255,.18); }
-    .lightbox-prev { left: 1rem; }
-    .lightbox-next { right: 1rem; }
+  .tl-text span {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    font-family: sans-serif;
+  }
 
-    /* ── FOOTER ── */
-    footer {
-      background: #080f1c;
-      color: #4a6080;
-      font-family: 'Inter', sans-serif;
-      font-size: .78rem;
-      text-align: center;
-      padding: 2rem;
-      margin-top: 2rem;
-      line-height: 1.9;
-    }
+  /* ── CONTENT AREA ── */
+  .content { padding: 0 56px 80px; }
 
-    /* ── CALLOUT ── */
-    .callout {
-      background: linear-gradient(to right, #fdf6e3, var(--surface));
-      border: 1px solid var(--gold-bd);
-      border-left: 4px solid var(--gold-mid);
-      border-radius: var(--radius);
-      padding: 1.25rem 1.6rem;
-      font-family: 'Inter', sans-serif;
-      font-size: .875rem;
-      line-height: 1.7;
-      color: #4a3800;
-      margin: 1.5rem 0;
-    }
-    .callout strong { color: #2e2200; font-weight: 600; }
+  /* ── SECTIONS ── */
+  .section {
+    margin-top: 56px;
+    scroll-margin-top: 24px;
+  }
 
-    hr.subtle { border: none; border-top: 1px solid var(--border-lt); margin: 2rem 0; }
-  </style>
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .section-num {
+    width: 36px;
+    height: 36px;
+    background: var(--navy);
+    color: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: sans-serif;
+    flex-shrink: 0;
+  }
+
+  .section-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+
+  .card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: sans-serif;
+  }
+
+  /* ── SEVERITY BADGES ── */
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    white-space: nowrap;
+  }
+
+  .badge-critical { background: var(--critical-bg); color: var(--critical); border: 1px solid var(--critical-border); }
+  .badge-high     { background: var(--high-bg);     color: var(--high);     border: 1px solid var(--high-border); }
+  .badge-medium   { background: var(--medium-bg);   color: var(--medium);   border: 1px solid var(--medium-border); }
+  .badge-low      { background: var(--low-bg);       color: var(--low);       border: 1px solid var(--low-border); }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    font-family: sans-serif;
+    font-size: 14px;
+    border-left: 4px solid;
+  }
+
+  .alert-critical { background: var(--critical-bg); border-color: var(--critical); color: #7f1d1d; }
+  .alert-high     { background: var(--high-bg);     border-color: var(--high);     color: #7c2d12; }
+  .alert-medium   { background: var(--medium-bg);   border-color: var(--medium);   color: #78350f; }
+  .alert-info     { background: #eff6ff;             border-color: var(--blue);     color: #1e3a5f; }
+
+  .alert strong { font-weight: 700; }
+
+  /* ── TABLES ── */
+  .table-wrap { overflow-x: auto; margin-bottom: 20px; border-radius: 8px; border: 1px solid var(--border); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    font-size: 13px;
+    background: var(--bg-card);
+  }
+
+  thead th {
+    background: var(--navy);
+    color: var(--gold);
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  tbody tr:nth-child(even) { background: #faf9f7; }
+  tbody tr:hover { background: #f0eeea; }
+
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  td:first-child { font-weight: 600; color: var(--navy); }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; margin: 8px 0; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--gold), var(--border));
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 16px;
+    font-family: sans-serif;
+    font-size: 13px;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -26px; top: 4px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--bg-card);
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+
+  .timeline-item.broken::before { background: var(--critical); box-shadow: 0 0 0 2px var(--critical); }
+  .timeline-item.missing::before { background: var(--border); box-shadow: 0 0 0 2px var(--text-muted); }
+
+  .timeline-item .ti-date {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .timeline-item .ti-event { color: var(--text); }
+  .timeline-item .ti-status {
+    font-size: 11px;
+    margin-top: 3px;
+    font-weight: 600;
+  }
+
+  .ti-proven    { color: var(--low); }
+  .ti-missing   { color: var(--critical); }
+  .ti-suggested { color: var(--medium); }
+  .ti-broken    { color: var(--critical); font-size: 13px; }
+
+  /* ── CHECKLISTS ── */
+  .checklist { list-style: none; font-family: sans-serif; font-size: 14px; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.5;
+  }
+  .checklist li:last-child { border-bottom: none; }
+
+  .checklist .ci-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    margin-top: 1px;
+  }
+
+  .ci-missing  { background: var(--critical-bg); color: var(--critical); }
+  .ci-critical { background: var(--critical-bg); color: var(--critical); }
+  .ci-high     { background: var(--high-bg);     color: var(--high); }
+  .ci-nice     { background: var(--low-bg);       color: var(--low); }
+
+  /* ── EMAIL DRAFTS ── */
+  .email-draft {
+    background: #f8f7f5;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+
+  .email-draft-header {
+    padding: 14px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+
+  .email-draft-header:hover { background: #f0eeea; border-radius: 8px; }
+
+  .email-draft-header h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    font-family: sans-serif;
+  }
+
+  .email-draft-header .toggle-icon {
+    color: var(--text-muted);
+    font-size: 18px;
+    transition: transform 0.2s;
+  }
+
+  .email-draft-body {
+    display: none;
+    padding: 0 20px 20px;
+  }
+
+  .email-draft-body.open { display: block; }
+
+  .email-body-text {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    color: var(--text);
+    max-height: 600px;
+    overflow-y: auto;
+  }
+
+  /* ── IMAGE GALLERY ── */
+  .gallery-section {
+    margin-top: 56px;
+    scroll-margin-top: 24px;
+  }
+
+  .gallery-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .gallery-tab {
+    padding: 8px 16px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg-card);
+    transition: all 0.15s;
+  }
+
+  .gallery-tab:hover { border-color: var(--blue); color: var(--blue); }
+  .gallery-tab.active { border-color: var(--navy); background: var(--navy); color: var(--gold); }
+
+  .gallery-grid {
+    display: none;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .gallery-grid.active { display: grid; }
+
+  .gallery-item {
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--bg-card);
+  }
+
+  .gallery-item:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .gallery-item .img-caption {
+    padding: 8px 10px;
+    font-family: sans-serif;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    font-weight: 600;
+  }
+
+  /* ── LIGHTBOX ── */
+  #lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #lightbox.open { display: flex; }
+
+  #lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  #lightbox .lb-close {
+    position: absolute;
+    top: 20px; right: 28px;
+    color: #fff;
+    font-size: 36px;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+    font-family: sans-serif;
+  }
+
+  #lightbox .lb-close:hover { opacity: 1; }
+
+  #lightbox .lb-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 48px;
+    cursor: pointer;
+    opacity: 0.5;
+    font-family: sans-serif;
+    user-select: none;
+    padding: 0 20px;
+  }
+
+  #lightbox .lb-nav:hover { opacity: 1; }
+  #lightbox .lb-prev { left: 0; }
+  #lightbox .lb-next { right: 0; }
+
+  #lightbox .lb-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.7);
+    font-family: sans-serif;
+    font-size: 13px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* ── GLOSSARY ── */
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 12px;
+  }
+
+  .glossary-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .glossary-item dt {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .glossary-item dd {
+    font-family: sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ── RISK CARD GRID ── */
+  .risk-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .risk-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    gap: 12px;
+    align-items: start;
+  }
+
+  .risk-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: sans-serif;
+    flex-shrink: 0;
+  }
+
+  .risk-body h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .risk-body p {
+    font-family: sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ── DISCLAIMER ── */
+  .disclaimer {
+    background: #fef3c7;
+    border: 1px solid #fcd34d;
+    border-radius: 6px;
+    padding: 14px 18px;
+    font-family: sans-serif;
+    font-size: 12.5px;
+    color: #78350f;
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  /* ── MUST-DO LIST ── */
+  .must-do {
+    background: var(--critical-bg);
+    border: 2px solid var(--critical-border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+
+  .must-do h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--critical);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    font-family: sans-serif;
+  }
+
+  .must-do ol {
+    padding-left: 20px;
+    font-family: sans-serif;
+    font-size: 13.5px;
+    color: #7f1d1d;
+    line-height: 1.7;
+  }
+
+  .must-do ol li { margin-bottom: 6px; }
+
+  /* ── SCROLLBAR ── */
+  #sidebar::-webkit-scrollbar { width: 4px; }
+  #sidebar::-webkit-scrollbar-track { background: transparent; }
+  #sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+
+  /* ── PRINT ── */
+  @media print {
+    #sidebar { display: none; }
+    #main { margin-left: 0; }
+    .hero { padding: 32px; }
+    .content { padding: 0 32px 40px; }
+    .gallery-grid { display: grid !important; }
+    .email-draft-body { display: block !important; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; }
+    .hero { padding: 32px 24px; }
+    .content { padding: 0 24px 60px; }
+    .traffic-light-banner { padding: 16px 24px; }
+    .hero .meta-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ── UTILITY ── */
+  .highlight { background: #fef9c3; padding: 2px 4px; border-radius: 2px; }
+  .text-muted { color: var(--text-muted); font-family: sans-serif; font-size: 13px; }
+  .mt-8 { margin-top: 8px; }
+  .mt-16 { margin-top: 16px; }
+  .flex { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  strong { font-weight: 700; }
+  em { font-style: italic; }
+</style>
 </head>
 <body>
 
-<!-- ──────────────── HERO ──────────────── -->
-<div class="hero">
-  <div class="hero-badge">Property Due Diligence Report</div>
-  <h1>102 Punent, Il-Belt Valletta</h1>
-  <p class="hero-sub">Valletta, Malta &nbsp;·&nbsp; Housing Authority File RTB 117/2002</p>
-  <div class="hero-pills">
-    <span class="pill pill-red">No Final Deed</span>
-    <span class="pill pill-red">Succession Gap</span>
-    <span class="pill pill-amber">Multiple Heirs Required</span>
-    <span class="pill pill-amber">Clawback Risk</span>
-    <span class="pill pill-blue">Konvenju 2002 — On File</span>
+<!-- ═══════════════ SIDEBAR ═══════════════ -->
+<nav id="sidebar">
+  <div class="logo">
+    <h1> Due Diligence<br>Report</h1>
+    <p>102 Punent, Il-Belt Valletta</p>
   </div>
+  <nav>
+    <span class="nav-section">Overview</span>
+    <a href="#images">Source Documents</a>
+    <a href="#exec-summary">1. Executive Summary</a>
+    <a href="#doc-inventory">2. Document Inventory</a>
+    <span class="nav-section">Analysis</span>
+    <a href="#title-chain">3. Title Chain Timeline</a>
+    <a href="#konvenju-check">4. Konvenju vs Final Deed</a>
+    <a href="#property-id">5. Property Identity</a>
+    <a href="#ha-risk">6. Housing Authority Risks</a>
+    <a href="#registry-review">7. Registry Search Review</a>
+    <a href="#red-flags">8. Red Flags</a>
+    <span class="nav-section">Action Items</span>
+    <a href="#missing-docs">9. Missing Documents</a>
+    <a href="#email-notary">10. Draft: Notary</a>
+    <a href="#email-ha">11. Draft: Housing Auth.</a>
+    <a href="#seller-questions">12. Seller Questions</a>
+    <a href="#decision-guide">13. Decision Guide</a>
+    <a href="#glossary">Glossary</a>
+  </nav>
+</nav>
+
+<!-- ═══════════════ LIGHTBOX ═══════════════ -->
+<div id="lightbox">
+  <span class="lb-close" onclick="closeLightbox()">×</span>
+  <span class="lb-nav lb-prev" onclick="lbNav(-1)">‹</span>
+  <img id="lb-img" src="" alt="">
+  <span class="lb-nav lb-next" onclick="lbNav(1)">›</span>
+  <div class="lb-caption" id="lb-caption"></div>
 </div>
 
-<!-- ──────────────── MAIN ──────────────── -->
-<div class="container">
+<!-- ═══════════════ MAIN ═══════════════ -->
+<div id="main">
 
-  <!-- STATUS: Have vs Missing -->
-  <div class="section">
-    <div class="section-label">Document Status</div>
-    <div class="section-title">What We Have &amp; What's Still Missing</div>
-    <div class="status-grid">
-      <div class="status-card">
-        <h3><span class="dot dot-green"></span> Documents on File</h3>
-        <ul>
-          <li>2001 Sir Sid Darek scheme terms</li>
-          <li>2002 Konvenju RTB 117/2002 (full copy, Batch 1)</li>
-          <li>2002 Housing Authority letter to Commissioner of Land</li>
-          <li>Luigia's death certificate (2007)</li>
-          <li>Luigia's 1983 will &amp; will-search confirmation</li>
-          <li>Maria's death certificate (2019)</li>
-          <li>Albert's death certificate (2015)</li>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="tag">Forensic Document Review</div>
+    <h1>Due Diligence of Preliminary Documents Prepared for Notaries</h1>
+    <div class="subtitle">102 Punent, Il-Belt Valletta, Malta &mdash; File RTB 117/2002 &mdash; Sir Sid Darek Scheme</div>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <label>Prepared by</label>
+        <span>AI Document Reviewer</span>
+      </div>
+      <div class="meta-item">
+        <label>File Reference</label>
+        <span>RTB 117/2002</span>
+      </div>
+      <div class="meta-item">
+        <label>Tenancy No.</label>
+        <span>Ten. No. 78119</span>
+      </div>
+      <div class="meta-item">
+        <label>Documents Reviewed</label>
+        <span>4 JSON extractions</span>
+      </div>
+      <div class="meta-item">
+        <label>Konvenju Date</label>
+        <span>22 October 2002</span>
+      </div>
+      <div class="meta-item">
+        <label>Original Purchaser</label>
+        <span>Luigia Sultana (ID 17032M)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- ═══ SOURCE DOCUMENT IMAGES ═══ -->
+    <div class="gallery-section" id="images" style="margin-top:32px">
+      <div class="section-header">
+        <div class="section-num" style="background:var(--gold);color:var(--navy)">📄</div>
+        <h2>Source Documents — Image Gallery</h2>
+      </div>
+
+      <div class="text-muted mt-8" style="margin-bottom:20px">Click any image to view full-size. Use arrow keys or on-screen buttons to navigate. The Konvenju PDF tab opens the original PDF file.</div>
+
+      <div class="gallery-tabs">
+        <div class="gallery-tab active" onclick="showGallery('sir-sid', this)">Sir Sid Darek Scheme (11 pages)</div>
+        <div class="gallery-tab" onclick="showGallery('scan2', this)">Konvenju Scans (5 pages)</div>
+        <div class="gallery-tab" onclick="showGallery('public-reg', this)">Public Registry — Succession (9 pages)</div>
+        <div class="gallery-tab" onclick="showGallery('konvenju-pdf', this)">Konvenju RTB 117-2002 (PDF)</div>
+      </div>
+
+      <!-- Sir Sid Darek Gallery -->
+      <div class="gallery-grid active" id="gallery-sir-sid">
+        <div class="gallery-item" onclick="openLightbox('sir-sid', 0)">
+          <img src="Sir sid darek- pg1.jpg" alt="Sir Sid Darek page 1" loading="lazy">
+          <div class="img-caption">Sir Sid Darek — Page 1</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('sir-sid', 1)">
+          <img src="Sir sid darek- pg2.jpg" alt="Sir Sid Darek page 2" loading="lazy">
+          <div class="img-caption">Sir Sid Darek — Page 2</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('sir-sid', 2)">
+          <img src="Sir sid darek- pg3.jpg" alt="Sir Sid Darek page 3" loading="lazy">
+          <div class="img-caption">Sir Sid Darek — Page 3</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('sir-sid', 3)">
+          <img src="Sir sid darek- pg4.jpg" alt="Sir Sid Darek page 4" loading="lazy">
+          <div class="img-caption">Sir Sid Darek — Page 4</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('sir-sid', 4)">
+          <img src="Sir sid darek- pg5.jpg" alt="Sir Sid Darek page 5" loading="lazy">
+          <div class="img-caption">Sir Sid Darek — Page 5</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('sir-sid', 5)">
+          <img src="Sir sid darek- pg6.jpg" alt="Sir Sid Darek page 6" loading="lazy">
+          <div class="img-caption">Sir Sid Darek — Page 6</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('sir-sid', 6)">
+          <img src="Sir sid darek- pg7.jpg" alt="Sir Sid Darek page 7" loading="lazy">
+          <div class="img-caption">Sir Sid Darek — Page 7</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('sir-sid', 7)">
+          <img src="Sir sid darek- pg8.jpg" alt="Sir Sid Darek page 8" loading="lazy">
+          <div class="img-caption">Sir Sid Darek — Page 8</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('sir-sid', 8)">
+          <img src="Sir sid darek- pg9.jpg" alt="Sir Sid Darek page 9" loading="lazy">
+          <div class="img-caption">Sir Sid Darek — Page 9</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('sir-sid', 9)">
+          <img src="Sir sid darek- pg10.jpg" alt="Sir Sid Darek page 10" loading="lazy">
+          <div class="img-caption">Sir Sid Darek — Page 10</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('sir-sid', 10)">
+          <img src="Sir sid darek- pg11.jpg" alt="Sir Sid Darek page 11" loading="lazy">
+          <div class="img-caption">Sir Sid Darek — Page 11</div>
+        </div>
+      </div>
+
+      <!-- Scan 2 (Konvenju) Gallery -->
+      <div class="gallery-grid" id="gallery-scan2">
+        <div class="gallery-item" onclick="openLightbox('scan2', 0)">
+          <img src="SCAN 2-PG 1.jpg" alt="Konvenju Scan page 1" loading="lazy">
+          <div class="img-caption">Konvenju Scan — Page 1</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('scan2', 1)">
+          <img src="SCAN 2-PG 2.jpg" alt="Konvenju Scan page 2" loading="lazy">
+          <div class="img-caption">Konvenju Scan — Page 2</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('scan2', 2)">
+          <img src="SCAN 2-PG 3.jpg" alt="Konvenju Scan page 3" loading="lazy">
+          <div class="img-caption">Konvenju Scan — Page 3</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('scan2', 3)">
+          <img src="SCAN 2-PG 4.jpg" alt="Konvenju Scan page 4" loading="lazy">
+          <div class="img-caption">Konvenju Scan — Page 4</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('scan2', 4)">
+          <img src="SCAN 2-PG 5.jpg" alt="Konvenju Scan page 5" loading="lazy">
+          <div class="img-caption">Konvenju Scan — Page 5</div>
+        </div>
+      </div>
+
+      <!-- Public Registry Gallery -->
+      <div class="gallery-grid" id="gallery-public-reg">
+        <div class="gallery-item" onclick="openLightbox('public-reg', 0)">
+          <img src="Public registry- Pg 1.jpg" alt="Public Registry page 1" loading="lazy">
+          <div class="img-caption">Public Registry — Page 1</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('public-reg', 1)">
+          <img src="Public registry- Pg 2.jpg" alt="Public Registry page 2" loading="lazy">
+          <div class="img-caption">Public Registry — Page 2</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('public-reg', 2)">
+          <img src="Public registry- Pg 3.jpg" alt="Public Registry page 3" loading="lazy">
+          <div class="img-caption">Public Registry — Page 3</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('public-reg', 3)">
+          <img src="Public registry- Pg 4.jpg" alt="Public Registry page 4" loading="lazy">
+          <div class="img-caption">Public Registry — Page 4</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('public-reg', 4)">
+          <img src="Public registry- Pg 5.jpg" alt="Public Registry page 5" loading="lazy">
+          <div class="img-caption">Public Registry — Page 5</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('public-reg', 5)">
+          <img src="Public registry- Pg 6.jpg" alt="Public Registry page 6" loading="lazy">
+          <div class="img-caption">Public Registry — Page 6</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('public-reg', 6)">
+          <img src="Public registry- form 2- pg 1.jpg" alt="Public Registry Form 2 page 1" loading="lazy">
+          <div class="img-caption">Public Registry Form 2 — Page 1</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('public-reg', 7)">
+          <img src="Public registry- form 2- pg 2- part 1.jpg" alt="Public Registry Form 2 page 2 part 1" loading="lazy">
+          <div class="img-caption">Public Registry Form 2 — Page 2 (Part 1)</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('public-reg', 8)">
+          <img src="Public registry- form 2- pg 2- part 2.jpg" alt="Public Registry Form 2 page 2 part 2" loading="lazy">
+          <div class="img-caption">Public Registry Form 2 — Page 2 (Part 2)</div>
+        </div>
+      </div>
+
+      <!-- Konvenju PDF -->
+      <div class="gallery-grid" id="gallery-konvenju-pdf" style="grid-template-columns:1fr;max-width:480px">
+        <a href="Konvenju RTB 117-2002.pdf" target="_blank" style="text-decoration:none">
+          <div style="background:var(--bg-card);border:2px solid var(--border);border-radius:8px;padding:32px 28px;display:flex;align-items:center;gap:24px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='var(--gold)';this.style.boxShadow='0 8px 20px rgba(0,0,0,0.1)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+            <div style="width:64px;height:80px;background:#e8f0ea;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:32px">📕</div>
+            <div>
+              <div style="font-family:sans-serif;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px">Konvenju RTB 117-2002.pdf</div>
+              <div style="font-family:sans-serif;font-size:13px;color:var(--text-muted);margin-bottom:12px">Original Konvenju (Promise of Sale) — 22 October 2002<br>Notary Sandro Schembri Adami, Act 13A</div>
+              <div style="display:inline-block;background:var(--blue);color:#fff;font-family:sans-serif;font-size:12px;font-weight:700;padding:6px 16px;border-radius:4px;letter-spacing:0.5px">Open PDF ↗</div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="disclaimer mt-16">
+      <strong>DISCLAIMER:</strong> This is a forensic document review for your Maltese notary's assistance. It is <strong>NOT</strong> a Report on Title, NOT legal advice, and NOT a substitute for an official Public Registry / Land Registry search, an architect/perit inspection, or a Housing Authority clearance.
+    </div>
+
+    <!-- ═══ 1. EXECUTIVE SUMMARY ═══ -->
+    <div class="section" id="exec-summary">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <h2>Executive Summary</h2>
+      </div>
+
+      <div class="alert alert-critical">
+        <strong>Ownership is NOT proven from the uploaded documents.</strong> What is uploaded is a <strong>Konvenju (promise of sale) of 22 October 2002 only</strong> — there is <strong>no final deed (att finali)</strong> anywhere in the materials. A promise of sale is not a transfer of ownership in Maltese law.
+      </div>
+
+      <div class="card">
+        <h3>Property Identity</h3>
+        <p>Partially clear. The Konvenju says <em>"il-fond numru 102 Punent, Il-Belt Valletta"</em>. This is enough to identify the building, but the documents do <strong>not</strong> specify floor, apartment number, garage, parking, or boundaries. The Konvenju explicitly <strong>excludes the roof and airspace</strong> and reserves perpetual easements to Government.</p>
+      </div>
+
+      <div class="card">
+        <h3>Housing Authority / Sir Sid Darek Restrictions</h3>
+        <ul style="font-family:sans-serif;font-size:13.5px;padding-left:18px;line-height:1.7;color:var(--text)">
+          <li>5-year inalienability: <strong>expired</strong> 22.10.2007</li>
+          <li>Subsidy claw-back on transfer: difference between fair market price and Lm 6,000 — <strong>still live</strong>, not discharged</li>
+          <li><strong>General Hypothec of Lm 7,000</strong> in favour of Housing Authority — <strong>no discharge document in file</strong></li>
+          <li>Roof, airspace, party-wall rights, and perpetual third-party easements all reserved to Government</li>
+          <li>2-month prior notice to Authority before any transfer</li>
         </ul>
       </div>
-      <div class="status-card missing">
-        <h3><span class="dot dot-red"></span> Critical Gaps</h3>
-        <ul>
-          <li>Maria Scicluna's Public Registry will search (Art. 29)</li>
-          <li>Civil Court search for any secret will — Maria</li>
-          <li>Maria's will (if any) or declaration of heirs</li>
-          <li>Causa mortis deed: Luigia → Maria (2007)</li>
-          <li>Causa mortis deed: Maria → her heirs (2019)</li>
-          <li>Post-2002 Housing Authority correspondence file</li>
-          <li>Current HA status letter on file RTB 117/2002</li>
-          <li>Full heir list with IDs &amp; current addresses</li>
-          <li>PA site plan &amp; architect's drawings</li>
-          <li>Ground rent figure (blank in 2002 letter)</li>
-        </ul>
+
+      <div class="section-header" style="margin-top:32px;border-bottom-color:var(--critical-border)">
+        <div class="section-num" style="background:var(--critical);color:#fff;">!</div>
+        <h2 style="color:var(--critical)">Top 5 Risks (Severity Ordered)</h2>
       </div>
-    </div>
-  </div>
 
-  <!-- CHAIN CALLOUT -->
-  <div class="callout">
-    <strong>Property Chain Summary:</strong> Luigia Sultana signed the konvenju in 2002 &rarr; Maria Scicluna inherited in 2007 &rarr; Maria's heirs now hold the claim.
-    The succession from Maria to her children has <strong>not been formally documented</strong> as a causa mortis deed. Albert (Maria's husband, d. 2015) never held the property — he is relevant only because the seller identified him as her father in the original brief.
-  </div>
-
-  <!-- CHALLENGES -->
-  <div class="section">
-    <div class="section-label">Risk Assessment</div>
-    <div class="section-title">Main Challenges — In Order of Severity</div>
-    <div class="challenges">
-
-      <div class="challenge challenge-1">
-        <div class="challenge-num">1</div>
-        <div>
-          <span class="severity sev-critical">Critical</span>
-          <h3>No final deed — and probably never will be soon</h3>
-          <p>The konvenju is 23 years old and was contingent on the Government acquiring the underlying land. The Government has admitted it cannot identify the landowner. What you would be buying is not registered ownership — it is a promise of sale plus possession. A Maltese notary may refuse to publish a deed of sale on this basis. A bank will almost certainly not lend against it. If the real landowner surfaces, they can challenge your position.</p>
+      <div class="risk-grid">
+        <div class="risk-card">
+          <div class="risk-num">1</div>
+          <div class="risk-body">
+            <h4>No final deed (att finali) in the file</h4>
+            <p>Title may never have perfected. Luigia Sultana — and everyone after her — holds only contractual rights, not immovable title.</p>
+          </div>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="risk-card">
+          <div class="risk-num">2</div>
+          <div class="risk-body">
+            <h4>General Hypothec of Lm 7,000 in favour of Housing Authority</h4>
+            <p>No cancellation documented. Likely still encumbers the entire estate of Luigia Sultana, present and future.</p>
+          </div>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="risk-card">
+          <div class="risk-num">3</div>
+          <div class="risk-body">
+            <h4>Subsidy claw-back on every onward transfer</h4>
+            <p>Difference between current market value and Lm 6,000 likely owed to Housing Authority. On a Valletta property, this could be tens of thousands of euros.</p>
+          </div>
+          <span class="badge badge-high">High</span>
+        </div>
+        <div class="risk-card">
+          <div class="risk-num">4</div>
+          <div class="risk-body">
+            <h4>Maria Scicluna's children are unidentified</h4>
+            <p>Under Luigia's will and Maria's own succession, these children are the current heirs. You don't know who the seller is or whether all heirs are signing.</p>
+          </div>
+          <span class="badge badge-high">High</span>
+        </div>
+        <div class="risk-card">
+          <div class="risk-num">5</div>
+          <div class="risk-body">
+            <h4>Property identity is incomplete</h4>
+            <p>No floor/apartment/boundary detail; roof and airspace excluded; perpetual Government easements over common parts and right to build above.</p>
+          </div>
+          <span class="badge badge-high">High</span>
         </div>
       </div>
 
-      <div class="challenge challenge-2">
-        <div class="challenge-num">2</div>
-        <div>
-          <span class="severity sev-critical">Critical</span>
-          <h3>The paper trail breaks at Maria's death</h3>
-          <p>The Housing Authority and Public Registry still list Luigia Sultana (d. 2007) as counterparty on file RTB 117/2002. Neither Luigia's inheritance to Maria (2007) nor Maria's inheritance to her children (2019) has been published as a causa mortis deed. Until those are done, the seller has no paper standing to sell anything.</p>
-        </div>
-      </div>
-
-      <div class="challenge challenge-3">
-        <div class="challenge-num">3</div>
-        <div>
-          <span class="severity sev-high">High</span>
-          <h3>Multiple heirs must all sign</h3>
-          <p>Maltese succession law vests the estate equally in all of Maria's legitimate children. Every single one of them must sign the sale deed or grant a formal power of attorney. If one sibling is abroad, estranged, or uncooperative, the deal cannot complete. You do not yet know how many siblings there are.</p>
-        </div>
-      </div>
-
-      <div class="challenge challenge-4">
-        <div class="challenge-num">4</div>
-        <div>
-          <span class="severity sev-high">High</span>
-          <h3>Housing Authority may claim a clawback</h3>
-          <p>The Sir Sid Darek scheme required the flat to be the beneficiary's ordinary residence. Maria died at St Vincent de Paule nursing home in Luqa, suggesting she was not residing at 102 Punent, Il-Belt Valletta during her final years. The Authority may demand refund of the Lm 6,500 subsidy revalued at today's market prices — potentially €30,000+. This must be resolved before you agree a price.</p>
-        </div>
-      </div>
-
-      <div class="challenge challenge-5">
-        <div class="challenge-num">5</div>
-        <div>
-          <span class="severity sev-medium">Medium</span>
-          <h3>Likely emphyteusis, not freehold</h3>
-          <p>The 2002 letter to the Commissioner of Land refers to ground rent, strongly suggesting the land is government-owned and the arrangement is a perpetual emphyteusis with an annual ground rent in perpetuity. Normal in Malta and saleable — but you need the figure before agreeing a price.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ACTION PLAN -->
-  <div class="section">
-    <div class="section-label">Recommended Actions</div>
-    <div class="section-title">What to Do — In Order</div>
-    <div class="actions">
-
-      <div class="action">
-        <div class="action-step">1</div>
-        <div>
-          <h3>Engage your own Maltese notary now — not the seller's</h3>
-          <p>Agree fees upfront. Do not sign anything and do not pay any deposit until your notary has completed their own independent searches.</p>
-        </div>
-      </div>
-
-      <div class="action">
-        <div class="action-step">2</div>
-        <div>
-          <h3>Have your notary write directly to the Housing Authority</h3>
-          <p>Quoting file reference RTB 117/2002, ask: is the konvenju still live; has the Government acquired title to the land; what is the Authority's current position on the scheme's residency requirements; what subsidy refund will they apply on an onward sale; and will they approve a transfer at this stage at all.</p>
-        </div>
-      </div>
-
-      <div class="action">
-        <div class="action-step">3</div>
-        <div>
-          <h3>Ask the seller to produce succession paperwork</h3>
-          <p>Maria Scicluna's Article 29 Public Registry will-search certificate; any will she made; a complete list of every one of Maria's children with ID numbers; and any causa mortis deeds already published for either Luigia's or Maria's successions. If these don't exist, the seller — at her cost — must have a notary draft and publish them before you talk about price.</p>
-        </div>
-      </div>
-
-      <div class="action">
-        <div class="action-step">4</div>
-        <div>
-          <h3>Commission an independent valuation from a Maltese architect (perit)</h3>
-          <p>Not the seller's. This tells you what the property is worth assuming clean title — then you subtract a substantial discount for everything that isn't clean.</p>
-        </div>
-      </div>
-
-      <div class="action">
-        <div class="action-step">5</div>
-        <div>
-          <h3>If and only if all of the above comes back cleanly — structure a protected konvenju</h3>
-          <p>Any konvenju you sign should make every outstanding issue a condition precedent to the final deed, with full refund of any deposit if conditions are not met within a fixed window. Your notary drafts this, not the seller's.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <div style="margin-top: 1.8rem;">
-      <div class="priority-list">
-        <h3>Revised Shortlist — In Priority Order</h3>
+      <div class="must-do mt-16">
+        <h3>What MUST be confirmed before you sign or pay another cent</h3>
         <ol>
-          <li>Maria's succession paperwork (causa mortis deeds + will search)</li>
-          <li>Complete post-2002 Housing Authority correspondence file</li>
-          <li>Full list of Maria's heirs with IDs &amp; current addresses</li>
-          <li>Current HA status letter on file RTB 117/2002</li>
-          <li>PA site plan &amp; architect's drawings (unit boundaries)</li>
-          <li>Original 1983 Luigia will in certified form (Notarial Archives)</li>
+          <li>The <strong>final deed of sale</strong> from the Housing Authority/Director of Lands to Luigia Sultana — date, notary, volume, registration number.</li>
+          <li>The <strong>discharge of the Lm 7,000 General Hypothec</strong> in favour of the Housing Authority.</li>
+          <li>A <strong>current Housing Authority clearance letter</strong> for file RTB 117/2002.</li>
+          <li><strong>Public Registry transfer &amp; liability searches</strong> against Luigia Sultana, Maria Scicluna, Albert Scicluna, AND each of Maria's children individually.</li>
+          <li><strong>Maria Scicluna's own will</strong> (or confirmation she died intestate) plus names and IDs of all her surviving children.</li>
+          <li><strong>Land Registry status</strong> for Valletta — confirm whether Form E and a registered plan should exist.</li>
+          <li>A <strong>perit/architect site report</strong> confirming physical property matches the Konvenju description.</li>
         </ol>
       </div>
     </div>
-  </div>
 
-  <!-- DOCUMENT-BY-DOCUMENT ANALYSIS -->
-  <div class="section">
-    <div class="section-label">Document-by-Document Analysis</div>
-    <div class="section-title">Revised Assessment of the Original Checklist</div>
-    <div class="doc-analysis">
-
-      <div class="doc-item">
-        <div class="doc-item-header">
-          <h3>1. "Agreement between aunt and father" (1992)</h3>
-          <span class="tag tag-note">Likely Non-Existent</span>
-        </div>
-        <div class="doc-item-body">
-          This document almost certainly does not exist — and the premise behind it is wrong. Luigia never transferred anything to any "father" in 1992. She remained the Housing Authority's tenant, personally applied to Sir Sid Darek in 2001, personally signed the konvenju in 2002, and left everything to her sister Maria by will in 2007. The seller either misremembered or is referring to an informal tenancy arrangement with no legal bearing. Still worth asking the seller what she meant — the answer is diagnostic of how well she understands her own file — but stop treating this as a document that needs to surface.
-        </div>
+    <!-- ═══ 2. DOCUMENT INVENTORY ═══ -->
+    <div class="section" id="doc-inventory">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <h2>Document Inventory</h2>
       </div>
 
-      <div class="doc-item">
-        <div class="doc-item-header">
-          <h3>2. "POS from 2003"</h3>
-          <span class="tag tag-done">On File — 2002</span>
-        </div>
-        <div class="doc-item-body">
-          You have this. It is from 2002, not 2003: the Konvenju RTB 117/2002, signed 22 October 2002 before Notary Schembri Adami. The Batch 1 copy (7-page PDF) is the complete version. SCAN 2 is abridged and missing the hypothec and rental-termination clauses — work from Batch 1 only.
-        </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Document Type</th>
+              <th>Date</th>
+              <th>Parties / Subject</th>
+              <th>Legal Weight</th>
+              <th>Proves Ownership?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Sir Sid Darek scheme application + regulations (Cl. 1–21)</td>
+              <td>Receipt: 22.01.2002; form undated</td>
+              <td>Applicant: Luigia Sultana, ID 17032M</td>
+              <td>Sets framework &amp; intent only</td>
+              <td><span class="badge badge-critical">NO</span></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Application fee receipt #124003</td>
+              <td>22.01.2002</td>
+              <td>Paid by "Sakina Albert" — <strong>does not match applicant</strong></td>
+              <td>Fee payment only</td>
+              <td><span class="badge badge-critical">NO</span></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><strong>Konvenju (promise of sale)</strong> — partial scan</td>
+              <td>22.10.2002</td>
+              <td>Housing Authority + Director of Lands → Luigia Sultana</td>
+              <td>Promise to sell, NOT a transfer of title</td>
+              <td><span class="badge badge-critical">NO</span></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Housing Authority cover letter (Form AD 44)</td>
+              <td>11.11.2002</td>
+              <td>HA → Land Dept (Rents Section)</td>
+              <td>Internal admin notification only</td>
+              <td><span class="badge badge-critical">NO</span></td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><strong>Konvenju (complete)</strong> — 7-page scan with General Hypothec clause</td>
+              <td>22.10.2002</td>
+              <td>Same as #3</td>
+              <td>Promise of sale only; more complete</td>
+              <td><span class="badge badge-critical">NO</span></td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Form O / Estratt mill-Att tal-Mewt (Luigia)</td>
+              <td>Issued 07.02.2008; death 24.12.2007</td>
+              <td>Luigia Sultana, ID 0017032M</td>
+              <td>Death extract only</td>
+              <td><span class="badge badge-critical">NO</span></td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Civil Court certificate — no secret will</td>
+              <td>Jan 2020 (cert. #321)</td>
+              <td>Luigia Sultana; search 1945–2020</td>
+              <td>Confirms no secret will</td>
+              <td><span class="badge badge-critical">NO</span></td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Public Registry Will Certificate (Art. 29 Cap. 56)</td>
+              <td>Issued 11.03.2020</td>
+              <td>Luigia Sultana; search 01.01.1983–29.02.2020</td>
+              <td>Confirms only Will T/9145/1983 found</td>
+              <td><span class="badge badge-critical">NO</span></td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>Notarial Index page showing T/9145/1983</td>
+              <td>November 1983</td>
+              <td>Will register</td>
+              <td>Index page only</td>
+              <td><span class="badge badge-critical">NO</span></td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Will of Luigia Sultana</td>
+              <td>22.11.1983 (Notary Joseph Cachia)</td>
+              <td>Names sister Maria Scicluna sole heir; vulgar substitution to Maria's children</td>
+              <td>Establishes testate succession only</td>
+              <td><span class="badge badge-critical">NO</span></td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>Form O — Albert Scicluna</td>
+              <td>11.12.2015 (death 03.11.2015)</td>
+              <td>Albert Scicluna, ID 0677739M</td>
+              <td>Establishes Albert predeceased Maria</td>
+              <td><span class="badge badge-critical">NO</span></td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>Death Certificate (Series E) — Maria Scicluna</td>
+              <td>Issued 07.01.2020; death 26.10.2019</td>
+              <td>Maria Scicluna née Sultana, ID 0432039M — <strong>annotations EMPTY</strong></td>
+              <td>Confirms Maria's death</td>
+              <td><span class="badge badge-critical">NO</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      <div class="doc-item">
-        <div class="doc-item-header">
-          <h3>3. Housing Authority correspondence</h3>
-          <span class="tag tag-partial">Partial — Post-2002 Missing</span>
-        </div>
-        <div class="doc-item-body">
-          You have the 11 November 2002 Housing Authority letter to the Commissioner of Land. What you don't have is anything after that. The seller's brief mentioned "several letters exchanged" and "the government updated that it could not locate the owner of the land." That correspondence trail is the single most important thing still missing on the HA side — it tells you exactly how stuck the file is and why. Ask the seller for the complete correspondence file: every letter in and every letter out.
-        </div>
-      </div>
-
-      <div class="doc-item">
-        <div class="doc-item-header">
-          <h3>4. Site plans</h3>
-          <span class="tag tag-missing">Missing</span>
-        </div>
-        <div class="doc-item-body">
-          Not yet produced. Ask specifically for: the Planning Authority (PA) site plan for 102 Punent, Il-Belt Valletta, Valletta, and any architect's drawings showing unit boundaries. Your independent valuer will need these, and your notary will want to verify the footprint matches what's being sold. Note: Konvenju Clause 13 mentions common access, shared stairs, and excludes the roof — the exact scope of what you'd be buying depends on these plans.
-        </div>
-      </div>
-
-      <div class="doc-item">
-        <div class="doc-item-header">
-          <h3>5. Succession documents — Luigia &amp; Maria</h3>
-          <span class="tag tag-missing">Critical — Missing</span>
-        </div>
-        <div class="doc-item-body">
-          Still needed: Luigia's original 1983 will in certified form (from Notary Joseph Cachia's acts or the Notarial Archives); Luigia's causa mortis deed (estate passing to Maria, 2007); Maria's Public Registry will search (Art. 29 certificate); Maria's Civil Court search for any secret will; Maria's will itself (if any); and Maria's causa mortis deed (estate passing to her heirs, 2019). If either causa mortis deed was never published, those must be done — at the seller's cost — before you can proceed.
-        </div>
-      </div>
-
-      <div class="doc-item">
-        <div class="doc-item-header">
-          <h3>6. Who signs the deed?</h3>
-          <span class="tag tag-missing">Unresolved</span>
-        </div>
-        <div class="doc-item-body">
-          The answer on paper is: every single one of Maria Scicluna's heirs must sign. It is not a matter of one family member being designated "the seller." Unless there is a formal power of attorney from the other heirs to one of them, all are required at the deed. You need: the full list of Maria's heirs with IDs and current addresses; confirmation that none are minors or deceased with their own sub-heirs; confirmation all are willing to sell (in writing); and whether one will act by POA or all will appear in person. Until you have these — in writing, verifiable against succession paperwork — you have a single family member who says she speaks for everyone. This is the question that most often kills Maltese inherited-property deals.
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- ──────────────── DOCUMENT GALLERY ──────────────── -->
-<div class="container">
-  <div class="gallery-section">
-    <div class="section-label">Document Archive</div>
-    <div class="section-title">Scanned Documents</div>
-    <p style="font-family: 'Inter', sans-serif; font-size: .88rem; color: var(--muted); margin-bottom: 2rem;">Click any document to view full-size. Documents are grouped by source.</p>
-
-    <!-- Sir Sid Darek -->
-    <div class="gallery-group">
-      <div class="gallery-group-title">Sir Sid Darek Scheme — Application &amp; Terms (2001) &nbsp;<span style="font-weight:400; color: var(--muted); font-size:.82rem;">11 pages</span></div>
-      <div class="gallery-grid" id="group-ssd">
-        <div class="gallery-item" onclick="openLightbox('ssd', 0)">
-          <img src="Sir sid darek- pg1.jpg" alt="Sir Sid Darek - Page 1" loading="lazy">
-          <div class="gallery-item-label">Sir Sid Darek — Pg 1</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('ssd', 1)">
-          <img src="Sir sid darek- pg2.jpg" alt="Sir Sid Darek - Page 2" loading="lazy">
-          <div class="gallery-item-label">Sir Sid Darek — Pg 2</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('ssd', 2)">
-          <img src="Sir sid darek- pg3.jpg" alt="Sir Sid Darek - Page 3" loading="lazy">
-          <div class="gallery-item-label">Sir Sid Darek — Pg 3</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('ssd', 3)">
-          <img src="Sir sid darek- pg4.jpg" alt="Sir Sid Darek - Page 4" loading="lazy">
-          <div class="gallery-item-label">Sir Sid Darek — Pg 4</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('ssd', 4)">
-          <img src="Sir sid darek- pg5.jpg" alt="Sir Sid Darek - Page 5" loading="lazy">
-          <div class="gallery-item-label">Sir Sid Darek — Pg 5</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('ssd', 5)">
-          <img src="Sir sid darek- pg6.jpg" alt="Sir Sid Darek - Page 6" loading="lazy">
-          <div class="gallery-item-label">Sir Sid Darek — Pg 6</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('ssd', 6)">
-          <img src="Sir sid darek- pg7.jpg" alt="Sir Sid Darek - Page 7" loading="lazy">
-          <div class="gallery-item-label">Sir Sid Darek — Pg 7</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('ssd', 7)">
-          <img src="Sir sid darek- pg8.jpg" alt="Sir Sid Darek - Page 8" loading="lazy">
-          <div class="gallery-item-label">Sir Sid Darek — Pg 8</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('ssd', 8)">
-          <img src="Sir sid darek- pg9.jpg" alt="Sir Sid Darek - Page 9" loading="lazy">
-          <div class="gallery-item-label">Sir Sid Darek — Pg 9</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('ssd', 9)">
-          <img src="Sir sid darek- pg10.jpg" alt="Sir Sid Darek - Page 10" loading="lazy">
-          <div class="gallery-item-label">Sir Sid Darek — Pg 10</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('ssd', 10)">
-          <img src="Sir sid darek- pg11.jpg" alt="Sir Sid Darek - Page 11" loading="lazy">
-          <div class="gallery-item-label">Sir Sid Darek — Pg 11</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Konvenju SCAN 2 -->
-    <div class="gallery-group">
-      <div class="gallery-group-title">Konvenju RTB 117/2002 — Abridged Scan &nbsp;<span style="font-weight:400; color: var(--muted); font-size:.82rem;">5 pages · missing hypothec &amp; rental-termination clauses</span></div>
-      <div class="gallery-grid" id="group-scan2">
-        <div class="gallery-item" onclick="openLightbox('scan2', 0)">
-          <img src="SCAN 2-PG 1.jpg" alt="Scan 2 - Page 1" loading="lazy">
-          <div class="gallery-item-label">Scan 2 — Pg 1</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('scan2', 1)">
-          <img src="SCAN 2-PG 2.jpg" alt="Scan 2 - Page 2" loading="lazy">
-          <div class="gallery-item-label">Scan 2 — Pg 2</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('scan2', 2)">
-          <img src="SCAN 2-PG 3.jpg" alt="Scan 2 - Page 3" loading="lazy">
-          <div class="gallery-item-label">Scan 2 — Pg 3</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('scan2', 3)">
-          <img src="SCAN 2-PG 4.jpg" alt="Scan 2 - Page 4" loading="lazy">
-          <div class="gallery-item-label">Scan 2 — Pg 4</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('scan2', 4)">
-          <img src="SCAN 2-PG 5.jpg" alt="Scan 2 - Page 5" loading="lazy">
-          <div class="gallery-item-label">Scan 2 — Pg 5</div>
-        </div>
+      <div class="card" style="border-color:var(--critical-border);background:var(--critical-bg);">
+        <h3 style="color:var(--critical)">Documents Conspicuously Absent from the File</h3>
+        <ul class="checklist">
+          <li><span class="ci-icon ci-missing">✕</span> Final deed of sale (att finali) — Housing Authority → Luigia Sultana</li>
+          <li><span class="ci-icon ci-missing">✕</span> Discharge of the Lm 7,000 General Hypothec</li>
+          <li><span class="ci-icon ci-missing">✕</span> Public Registry <strong>transfer</strong> searches (only succession/will searches present)</li>
+          <li><span class="ci-icon ci-missing">✕</span> Public Registry <strong>liability/hypothec</strong> searches against any party</li>
+          <li><span class="ci-icon ci-missing">✕</span> Causa mortis declarations for Luigia, Albert, and Maria</li>
+          <li><span class="ci-icon ci-missing">✕</span> Maria Scicluna's own will (or court certificate of no will)</li>
+          <li><span class="ci-icon ci-missing">✕</span> Identification of Maria's children — names, IDs, addresses</li>
+          <li><span class="ci-icon ci-missing">✕</span> Land Registry searches / Form E / official plan</li>
+          <li><span class="ci-icon ci-missing">✕</span> Current Housing Authority clearance / status letter</li>
+          <li><span class="ci-icon ci-missing">✕</span> Architect/perit site report and Planning Authority permit history</li>
+          <li><span class="ci-icon ci-missing">✕</span> Condominium / common parts documents</li>
+        </ul>
       </div>
     </div>
 
-    <!-- Public Registry -->
-    <div class="gallery-group">
-      <div class="gallery-group-title">Public Registry — Luigia Sultana Will Search &amp; Article 29 Certificate &nbsp;<span style="font-weight:400; color: var(--muted); font-size:.82rem;">8 pages</span></div>
-      <div class="gallery-grid" id="group-pr">
-        <div class="gallery-item" onclick="openLightbox('pr', 0)">
-          <img src="Public registry- Pg 1.jpg" alt="Public Registry - Page 1" loading="lazy">
-          <div class="gallery-item-label">Public Registry — Pg 1</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('pr', 1)">
-          <img src="Public registry- Pg 2.jpg" alt="Public Registry - Page 2" loading="lazy">
-          <div class="gallery-item-label">Public Registry — Pg 2</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('pr', 2)">
-          <img src="Public registry- Pg 3.jpg" alt="Public Registry - Page 3" loading="lazy">
-          <div class="gallery-item-label">Public Registry — Pg 3</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('pr', 3)">
-          <img src="Public registry- Pg 4.jpg" alt="Public Registry - Page 4" loading="lazy">
-          <div class="gallery-item-label">Public Registry — Pg 4</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('pr', 4)">
-          <img src="Public registry- Pg 5.jpg" alt="Public Registry - Page 5" loading="lazy">
-          <div class="gallery-item-label">Public Registry — Pg 5</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('pr', 5)">
-          <img src="Public registry- Pg 6.jpg" alt="Public Registry - Page 6" loading="lazy">
-          <div class="gallery-item-label">Public Registry — Pg 6</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('pr', 6)">
-          <img src="Public registry- form 2- pg 1.jpg" alt="Public Registry Form 2 - Page 1" loading="lazy">
-          <div class="gallery-item-label">Public Registry Form 2 — Pg 1</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('pr', 7)">
-          <img src="Public registry- form 2- pg 2- part 1.jpg" alt="Public Registry Form 2 - Page 2 Part 1" loading="lazy">
-          <div class="gallery-item-label">Form 2 — Pg 2 Part 1</div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('pr', 8)">
-          <img src="Public registry- form 2- pg 2- part 2.jpg" alt="Public Registry Form 2 - Page 2 Part 2" loading="lazy">
-          <div class="gallery-item-label">Form 2 — Pg 2 Part 2</div>
+    <!-- ═══ 3. TITLE CHAIN TIMELINE ═══ -->
+    <div class="section" id="title-chain">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <h2>Title Chain Timeline</h2>
+      </div>
+
+      <div class="alert alert-critical">
+        <strong>Title chain integrity: BROKEN AT STEP 6.</strong> Until the final deed is produced, every subsequent step is moot. The succession bundle tells you who would have inherited Luigia's interest — but if Luigia never became the full owner, her successors can only inherit her contingent rights under the Konvenju, not full title.
+      </div>
+
+      <div class="card">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="ti-date">Pre-2002</div>
+            <div class="ti-event">Luigia Sultana was a <strong>recognised tenant</strong> (kerrej rikonoxxut) under lease from the Director of Lands. Land Dept. tenancy file: <strong>Ten. No. 78119</strong>.</div>
+            <div class="ti-status ti-suggested">Suggested (mentioned in cover letter and lease-termination clause)</div>
+          </div>
+          <div class="timeline-item">
+            <div class="ti-date">22.01.2002</div>
+            <div class="ti-event">Application fee receipt (#124003), paid by "Sakina Albert" (?) — predates application form completion. Payer name does not match applicant.</div>
+            <div class="ti-status ti-suggested">Suggested — verify</div>
+          </div>
+          <div class="timeline-item">
+            <div class="ti-date">Date BLANK</div>
+            <div class="ti-event">Sir Sid Darek scheme application by Luigia Sultana. <strong>Form is unsigned and undated.</strong></div>
+            <div class="ti-status ti-missing">Missing/Incomplete</div>
+          </div>
+          <div class="timeline-item">
+            <div class="ti-date">22.10.2002</div>
+            <div class="ti-event"><strong>Konvenju</strong> signed before Notary Sandro Schembri Adami (Act 13A, Vol. T or J Nº 1626/02). Lm 6,000 paid. Lease terminated. <strong>General Hypothec Lm 7,000</strong> registered against Luigia.</div>
+            <div class="ti-status ti-proven">PROVEN — but only as a promise of sale</div>
+          </div>
+          <div class="timeline-item">
+            <div class="ti-date">29.10.2002</div>
+            <div class="ti-event">True copy of Konvenju certified.</div>
+            <div class="ti-status ti-proven">Proven</div>
+          </div>
+          <div class="timeline-item">
+            <div class="ti-date">11.11.2002</div>
+            <div class="ti-event">HA cover letter (AD 44) to Commissioner of Lands re: ground-rent records.</div>
+            <div class="ti-status ti-proven">Proven as administrative note only — NOT as evidence of title transfer</div>
+          </div>
+          <div class="timeline-item broken">
+            <div class="ti-date">Within 6 months of HA acquiring full title</div>
+            <div class="ti-event" style="color:var(--critical);font-weight:700;font-family:sans-serif"><strong>⚠ FINAL DEED OF SALE (att finali) REQUIRED</strong> — Konvenju Cl. 9 + scheme Cl. 10(iii)</div>
+            <div class="ti-status ti-missing"><strong>MISSING — TITLE CHAIN BROKEN HERE</strong></div>
+          </div>
+          <div class="timeline-item">
+            <div class="ti-date">22.10.2007</div>
+            <div class="ti-event">5-year inalienability period expires (still subject to subsidy claw-back, Authority notice, and copies obligations).</div>
+            <div class="ti-status ti-proven">By calculation</div>
+          </div>
+          <div class="timeline-item">
+            <div class="ti-date">24.12.2007</div>
+            <div class="ti-event">Luigia Sultana dies. Will T/9145/1983 (Notary Joseph Cachia) names sister Maria Scicluna née Sultana sole universal heir, vulgar substitution to her children.</div>
+            <div class="ti-status ti-proven">Proven — heirship only</div>
+          </div>
+          <div class="timeline-item missing">
+            <div class="ti-date">?</div>
+            <div class="ti-event">Causa mortis registration for Luigia's estate.</div>
+            <div class="ti-status ti-missing">MISSING</div>
+          </div>
+          <div class="timeline-item">
+            <div class="ti-date">03.11.2015</div>
+            <div class="ti-event">Albert Scicluna (Maria's husband) dies, predeceasing Maria.</div>
+            <div class="ti-status ti-proven">Proven</div>
+          </div>
+          <div class="timeline-item">
+            <div class="ti-date">26.10.2019</div>
+            <div class="ti-event">Maria Scicluna née Sultana dies. Death certificate <strong>annotations section is empty</strong>.</div>
+            <div class="ti-status ti-proven">Proven — causa mortis not registered</div>
+          </div>
+          <div class="timeline-item missing">
+            <div class="ti-date">?</div>
+            <div class="ti-event">Maria Scicluna's own will (if any), or court cert of no will. Identification of all of Maria's children (now the relevant heirs). Any subsequent transfer / partition / donation.</div>
+            <div class="ti-status ti-missing">ALL MISSING</div>
+          </div>
+          <div class="timeline-item broken">
+            <div class="ti-date">Today</div>
+            <div class="ti-event"><strong>Current seller's title</strong></div>
+            <div class="ti-status ti-broken">NOT PROVEN — UNKNOWN</div>
+          </div>
         </div>
       </div>
     </div>
 
-  </div>
-</div>
+    <!-- ═══ 4. KONVENJU VS FINAL DEED ═══ -->
+    <div class="section" id="konvenju-check">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <h2>Konvenju vs Final Deed Check</h2>
+      </div>
 
-<!-- ──────────────── FOOTER ──────────────── -->
-<footer>
-  <p>102 Punent, Il-Belt Valletta, Valletta &nbsp;·&nbsp; Housing Authority File RTB 117/2002 &nbsp;·&nbsp; Due Diligence Report</p>
-  <p style="margin-top:.5rem; color: #334a66;">This document is for informational purposes only and does not constitute legal advice. Engage a Maltese notary before taking any action.</p>
-</footer>
+      <div class="alert alert-critical">
+        <strong>ONLY a Konvenju is present.</strong> Both extractions describe the same single document: a <strong>promise of sale / preliminary sale agreement</strong> dated 22.10.2002. The document self-identifies as a Konvenju, refers to the buyer as "l-akwirenti prospettivi" (the <em>prospective</em> purchaser), and expressly contemplates a future final deed.
+      </div>
 
-<!-- ──────────────── LIGHTBOX ──────────────── -->
-<div class="lightbox" id="lightbox" onclick="closeLightboxOnBackdrop(event)">
-  <button class="lightbox-close" onclick="closeLightbox()">&#215;</button>
-  <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">&#8249;</button>
-  <img id="lightbox-img" src="" alt="">
-  <p class="lightbox-caption" id="lightbox-caption"></p>
-  <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">&#8250;</button>
-</div>
+      <div class="card">
+        <h3>Internal Evidence This Is NOT the Final Deed</h3>
+        <ul style="font-family:sans-serif;font-size:13.5px;padding-left:18px;line-height:1.8;color:var(--text)">
+          <li>Scheme heading: <em>"Skema ta' l-2001 ghax-xiri ta' djar … Konvenju"</em> — act self-identifies as a Konvenju</li>
+          <li>Buyer referred to as <strong>"l-akwirenti prospettivi"</strong> (prospective purchaser), not as the buyer</li>
+          <li><strong>Clause 6</strong>: decontrol incentive given <em>"at the final act"</em> — confirming final act is a separate document</li>
+          <li><strong>Clause 9</strong>: Konvenju must be <em>"finalised within 6 months"</em> from when Authority acquires property — a separate finalisation act is contemplated</li>
+          <li><strong>Clause 10</strong>: describes consequences if buyer fails to proceed to <em>"the final transfer"</em></li>
+          <li><strong>Scheme Clause 10(iii)</strong>: Authority undertakes a <em>"final transfer act"</em> within 6 months of acquiring legal title</li>
+          <li>The <strong>Director of Lands is co-represented</strong> and a lease is being terminated — the underlying land was NOT yet absolute Government property in October 2002</li>
+        </ul>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Question</th><th>Answer (from documents)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Who promised to sell?</td><td>The Housing Authority AND the Director of Lands, through Carmen Azzopardi (ID 326370M), wife of John, of Birżebbuġia</td></tr>
+            <tr><td>Who promised to buy?</td><td><strong>Luigia Sultana</strong>, spinster, daughter of Joseph Sultana and Maria Assunta née Trevisan, of Valletta, ID 17032M</td></tr>
+            <tr><td>What property?</td><td>"il-fond numru 102, Triq il-Punent, il-Belt Valletta" — tale quale, with own main door, share of common parts, <strong>excluding roof and airspace</strong></td></tr>
+            <tr><td>What price?</td><td>Open market Lm 12,500 — subsidy Lm 6,500 = <strong>Lm 6,000 net</strong>, paid in full at Konvenju</td></tr>
+            <tr><td>Was HA's title to land already acquired?</td><td><strong>NO — strongly suggested no.</strong> Director of Lands is co-party, lease is being terminated, Clause 9 references the "when … acquired" trigger</td></tr>
+            <tr><td>Does the document require a final deed?</td><td><strong>YES</strong> — Clauses 6, 9, 10 all refer to a future "att finali" / final transfer</td></tr>
+            <tr><td>Is the final deed in the uploaded files?</td><td><span class="badge badge-critical">NO — MISSING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══ 5. PROPERTY IDENTITY ═══ -->
+    <div class="section" id="property-id">
+      <div class="section-header">
+        <div class="section-num">5</div>
+        <h2>Property Identity Matrix</h2>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Element</th>
+              <th>Application Form</th>
+              <th>Konvenju (22.10.2002)</th>
+              <th>HA Cover Letter</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Door number</td><td>"IC2" (handwritten)</td><td><strong>102</strong></td><td>102</td><td><span style="color:var(--low)">✅ Consistent</span></td></tr>
+            <tr><td>Apartment / unit number</td><td>Not specified</td><td><strong>Not specified</strong></td><td>Not specified</td><td><span class="badge badge-critical">❌ Missing</span></td></tr>
+            <tr><td>Floor</td><td>Not specified</td><td><strong>Not specified</strong></td><td>Not specified</td><td><span class="badge badge-critical">❌ Missing</span></td></tr>
+            <tr><td>Block</td><td>Not specified</td><td>"same block" — no name/number</td><td>Not specified</td><td><span class="badge badge-critical">❌ Missing</span></td></tr>
+            <tr><td>Street</td><td>Triq il-Punent</td><td>Triq il-Punent</td><td>Triq il-Punent</td><td><span style="color:var(--low)">✅ Consistent</span></td></tr>
+            <tr><td>Locality</td><td>Valletta</td><td>il-Belt Valletta</td><td>Valletta</td><td><span style="color:var(--low)">✅ Consistent</span></td></tr>
+            <tr><td>Garage / parking</td><td>Not mentioned</td><td>Not mentioned</td><td>Not mentioned</td><td><span class="badge badge-critical">❌ Not in scope</span></td></tr>
+            <tr><td>Common parts</td><td>—</td><td>Undivided share — perpetual Government easement (Cl. 13, 16)</td><td>—</td><td><span class="badge badge-medium">⚠ Burdened</span></td></tr>
+            <tr><td>Roof</td><td>—</td><td><strong>EXCLUDED — remains Government property (Cl. 13, 14)</strong></td><td>—</td><td><span class="badge badge-high">⚠ NOT yours</span></td></tr>
+            <tr><td>Airspace</td><td>—</td><td><strong>EXCLUDED — remains Government property (Cl. 14)</strong></td><td>—</td><td><span class="badge badge-high">⚠ NOT yours</span></td></tr>
+            <tr><td>Boundaries</td><td>Not described</td><td>"tale quale" only — not described</td><td>Not described</td><td><span class="badge badge-critical">❌ No boundary description</span></td></tr>
+            <tr><td>Plan reference</td><td>None</td><td>None</td><td>None</td><td><span class="badge badge-critical">❌ No plan in file</span></td></tr>
+            <tr><td>Land Registry ref</td><td>None</td><td>None</td><td>None</td><td><span class="badge badge-critical">❌ Missing</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert alert-high">
+        <strong>Key finding:</strong> There is no plan, no apartment number, no floor designation, no boundary description. "102 Punent, Il-Belt Valletta" alone is not enough to match the property in the current contract without a perit confirming the physical match.
+      </div>
+    </div>
+
+    <!-- ═══ 6. HOUSING AUTHORITY RISKS ═══ -->
+    <div class="section" id="ha-risk">
+      <div class="section-header">
+        <div class="section-num">6</div>
+        <h2>Housing Authority / Sir Sid Darek Risk Review</h2>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Source</th>
+              <th>Status from Documents</th>
+              <th>Practical Effect</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>5-year residence requirement</td>
+              <td>Konvenju Cl. 4(b), Scheme Cl. 11(i)</td>
+              <td>Period ran 22.10.2002 → 22.10.2007. Luigia died 24.12.2007 (just 2 months after expiry).</td>
+              <td>Confirm Authority is not contending residence was vacated earlier</td>
+            </tr>
+            <tr>
+              <td>5-year inter vivos transfer prohibition</td>
+              <td>Konvenju Cl. 4(c), Scheme Cl. 11(ii)</td>
+              <td>Expired 22.10.2007</td>
+              <td>Now extinct</td>
+            </tr>
+            <tr>
+              <td><strong>Subsidy claw-back on ANY transfer</strong></td>
+              <td>Konvenju Cl. 4(d), Scheme Cl. 11(iii)</td>
+              <td><strong style="color:var(--critical)">STILL APPLIES on every transfer.</strong> 2 months' prior notice required. Amount = fair market price minus Lm 6,000.</td>
+              <td><strong>Live charge on every transfer.</strong> On a Valletta property, could be very large. No discharge or payment in file.</td>
+            </tr>
+            <tr>
+              <td>Conditions binding on successors</td>
+              <td>Konvenju Cl. 4(e), Scheme Cl. 11</td>
+              <td>Maria Scicluna and her children are bound</td>
+              <td>Maria's heirs cannot escape these conditions</td>
+            </tr>
+            <tr>
+              <td><strong>General Hypothec Lm 7,000</strong></td>
+              <td>Konvenju (consolidated) — Hypothec provision</td>
+              <td><strong style="color:var(--critical)">NO discharge document in file.</strong> Registered against ALL property of Luigia, present and future.</td>
+              <td>Likely <strong>still encumbers</strong> the property. Public Registry liability search MUST be obtained.</td>
+            </tr>
+            <tr>
+              <td>Roof / airspace excluded</td>
+              <td>Konvenju Cl. 13, Cl. 14</td>
+              <td>Government property; buyer has only restricted use</td>
+              <td>If seller claims roof/airspace is included, they are wrong unless a later deed grants it</td>
+            </tr>
+            <tr>
+              <td><strong>Government right to build above</strong></td>
+              <td>Konvenju Cl. 15</td>
+              <td>Reserved in perpetuity. May remove washrooms, water tanks, TV aerials. May connect new floors' services through your apartment.</td>
+              <td><strong>Major redevelopment risk.</strong> View/amenity/privacy could be lost without compensation.</td>
+            </tr>
+            <tr>
+              <td>Perpetual third-party easement over common parts</td>
+              <td>Konvenju Cl. 16</td>
+              <td>Reserved in perpetuity to Government and any third parties Government grants rights to</td>
+              <td>Common parts can be used by future occupants of any new floors</td>
+            </tr>
+            <tr>
+              <td>Decontrol incentive (Cap 158)</td>
+              <td>Konvenju Cl. 6, Scheme Cl. 14</td>
+              <td>"Given at the final act" — only if/when final deed is executed</td>
+              <td>If no final deed, property may technically still be under rent control</td>
+            </tr>
+            <tr>
+              <td>Copies of every transfer to Authority</td>
+              <td>Konvenju Cl. 11</td>
+              <td>Within 30 days; Lm 10/week penalty for non-compliance</td>
+              <td>Verify any past transfers were notified</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>Specific Amounts Cross-Check</h3>
+        <ul style="font-family:sans-serif;font-size:13.5px;padding-left:18px;line-height:1.8;color:var(--text)">
+          <li><strong>Lm 6,000 price payable</strong> — CONFIRMED: "sitt elef lira" — paid in full at Konvenju</li>
+          <li><strong>Lm 6,500 subsidy</strong> — CONFIRMED</li>
+          <li><strong>Lm 7,000 hypothec</strong> — CONFIRMED in complete extraction; covers ALL of Luigia's property present AND future. <strong>This is a live concern.</strong></li>
+          <li><strong>Roof / airspace excluded</strong> — CONFIRMED (Cl. 14)</li>
+          <li><strong>Final-deed deadline</strong> — CONFIRMED in scheme Cl. 10(iii) and Konvenju Cl. 9</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══ 7. REGISTRY REVIEW ═══ -->
+    <div class="section" id="registry-review">
+      <div class="section-header">
+        <div class="section-num">7</div>
+        <h2>Public Registry / Land Registry Search Review</h2>
+      </div>
+
+      <div class="alert alert-high">
+        <strong>The uploaded "public_registry" bundle is a SUCCESSION bundle, not a transfers/liabilities bundle.</strong> It proves who Luigia's heirs are. It does NOT prove anything about transfers of the property itself or about hypothecs.
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Search Type</th><th>Person Searched</th><th>Period</th><th>What It Shows</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Form O (death extract)</td><td>Luigia Sultana, ID 0017032M</td><td>—</td><td>Confirms death 24.12.2007</td></tr>
+            <tr><td>Form O (death extract)</td><td>Albert Scicluna, ID 0677739M</td><td>—</td><td>Confirms death 03.11.2015</td></tr>
+            <tr><td>Death Cert. (Series E)</td><td>Maria Scicluna née Sultana, ID 0432039M</td><td>—</td><td>Confirms death 26.10.2019; <strong>annotations field EMPTY</strong></td></tr>
+            <tr><td>Court cert. of no secret will</td><td>Luigia Sultana</td><td>1945–2020</td><td>No secret will found</td></tr>
+            <tr><td>Public Registry Will Certificate</td><td>Luigia Sultana</td><td>01.01.1983–29.02.2020</td><td>Only Will T/9145/1983 found</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card" style="border-color:var(--critical-border);background:var(--critical-bg);">
+        <h3 style="color:var(--critical)">What the Bundle Does NOT Contain</h3>
+        <ul class="checklist">
+          <li><span class="ci-icon ci-missing">✕</span> Public Registry <strong>transfer search</strong> against any party (Luigia, Maria, Albert, Maria's children)</li>
+          <li><span class="ci-icon ci-missing">✕</span> Public Registry <strong>liability search</strong> (hypothecs, privileges, cautions, cancellations)</li>
+          <li><span class="ci-icon ci-missing">✕</span> Causa mortis registration for Luigia's estate</li>
+          <li><span class="ci-icon ci-missing">✕</span> Causa mortis registration for Maria's estate</li>
+          <li><span class="ci-icon ci-missing">✕</span> Causa mortis registration for Albert's estate</li>
+          <li><span class="ci-icon ci-missing">✕</span> Will search + no-secret-will certificate for Maria Scicluna</li>
+          <li><span class="ci-icon ci-missing">✕</span> Land Registry searches / Form E / registered plan</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Open Uncertainties from the Succession Bundle</h3>
+        <ul style="font-family:sans-serif;font-size:13.5px;padding-left:18px;line-height:1.8;color:var(--text)">
+          <li>Maria Scicluna's DOB shown as "25/11/2019" — physically impossible; almost certainly <strong>25/11/1939</strong> (OCR error). Verify on original.</li>
+          <li>Court certificate signing date "09" or "19" January 2020 — handwriting unclear</li>
+          <li>Luigia's handwritten attestation date "3" or "31" January 1984 — handwriting unclear</li>
+          <li>Form O cites different Civil Code chapters for Albert (Cap. 16) and Luigia (Cap. 23) — confirm correct chapter</li>
+          <li>Cover-letter reference "RTB 114/2002" vs Konvenju's "RTB 117/2002" — almost certainly a transcription slip</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══ 8. RED FLAGS ═══ -->
+    <div class="section" id="red-flags">
+      <div class="section-header">
+        <div class="section-num">8</div>
+        <h2>Red Flag Table</h2>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Risk</th>
+              <th>Severity</th>
+              <th>Why It Matters</th>
+              <th>Who Must Answer</th>
+              <th>Question to Ask</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>No final deed (att finali) in the file</td>
+              <td><span class="badge badge-critical">Critical</span></td>
+              <td>Until final deed, Luigia holds only contractual rights, not immovable title</td>
+              <td>Notary + Seller + Housing Authority</td>
+              <td>Was the final deed ever executed? If yes — date, notary, volume, registration number</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>General Hypothec Lm 7,000 — no discharge</td>
+              <td><span class="badge badge-critical">Critical</span></td>
+              <td>Live hypothec encumbers the property and all of Luigia's estate</td>
+              <td>Notary (search) + Housing Authority</td>
+              <td>Confirm whether the Lm 7,000 General Hypothec has been formally discharged. Provide cancellation deed</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Subsidy claw-back on transfer</td>
+              <td><span class="badge badge-high">High</span></td>
+              <td>Difference between current market price and Lm 6,000 owed on every transfer</td>
+              <td>Housing Authority + Seller</td>
+              <td>What is the current claw-back due? Has it been quantified, paid, or waived?</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Maria Scicluna's heirs unknown</td>
+              <td><span class="badge badge-high">High</span></td>
+              <td>These persons are the current owners — must know who they are and that ALL are signing</td>
+              <td>Notary + Seller / Agent</td>
+              <td>Provide names, IDs, and addresses of all of Maria Scicluna's children, with proof</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Property identity incomplete</td>
+              <td><span class="badge badge-high">High</span></td>
+              <td>Cannot match documented property to physical property without perit</td>
+              <td>Notary + Perit + Agent</td>
+              <td>Provide architect's plan with door number, floor, internal layout, and boundaries</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Roof and airspace excluded</td>
+              <td><span class="badge badge-high">High</span></td>
+              <td>If agent / current contract claims them, the claim is unsupported</td>
+              <td>Seller / Agent + Notary</td>
+              <td>Show the deed of acquisition adding those rights, if claimed</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Government right to build above</td>
+              <td><span class="badge badge-high">High</span></td>
+              <td>Future redevelopment risk; loss of light/air/privacy without compensation</td>
+              <td>Notary + Housing Authority</td>
+              <td>Has the Authority/Government released this right? Any current plans?</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Perpetual third-party easement over common parts</td>
+              <td><span class="badge badge-medium">Medium</span></td>
+              <td>Common parts may be used by future tenants granted rights by Government</td>
+              <td>Notary</td>
+              <td>Confirm on Land Registry whether this easement is registered as a real servitude</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>Application unsigned &amp; undated; receipt name mismatch</td>
+              <td><span class="badge badge-low">Low–Medium</span></td>
+              <td>Process irregularity; might support an Authority challenge</td>
+              <td>Housing Authority</td>
+              <td>Was the application accepted as valid? Provide Authority approval letter</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Cover letter "RTB 114" vs Konvenju "RTB 117"</td>
+              <td><span class="badge badge-low">Low</span></td>
+              <td>Likely transcription error — resolve to be certain</td>
+              <td>Housing Authority</td>
+              <td>Confirm file reference is RTB 117/2002 and provide file-jacket header</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>Annotations field on Maria's death certificate is empty</td>
+              <td><span class="badge badge-medium">Medium</span></td>
+              <td>Causa mortis declarations should normally appear here — chain to her children not formally registered</td>
+              <td>Public Registry</td>
+              <td>Has Maria Scicluna's causa mortis declaration been registered?</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>Cover-letter ground-rent rate is BLANK</td>
+              <td><span class="badge badge-medium">Medium</span></td>
+              <td>Status of ground rent (ċens) unclear</td>
+              <td>Land Department / Notary</td>
+              <td>Is any ground rent (ċens) payable on this property? To whom, at what rate?</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>Volume reference "Vol. T or J Nº 1626/02" ambiguous</td>
+              <td><span class="badge badge-low">Low</span></td>
+              <td>Affects ability to retrieve original</td>
+              <td>Notary Schembri Adami's protocol</td>
+              <td>Confirm exact volume reference; obtain fresh certified true copy</td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>No Land Registry plan, no Form E</td>
+              <td><span class="badge badge-medium">Medium–High</span></td>
+              <td>Valletta includes Land Registry compulsory areas</td>
+              <td>Notary + Land Registry</td>
+              <td>Confirm whether property is in a Land Registry area; obtain Form E if so</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══ 9. MISSING DOCS ═══ -->
+    <div class="section" id="missing-docs">
+      <div class="section-header">
+        <div class="section-num">9</div>
+        <h2>Missing Documents Checklist</h2>
+      </div>
+
+      <div class="card" style="border-color:var(--critical-border);background:var(--critical-bg);margin-bottom:20px">
+        <h3 style="color:var(--critical)">CRITICAL — Do Not Pay Further Deposits or Sign Anything Until Obtained</h3>
+        <ul class="checklist">
+          <li><span class="ci-icon ci-critical">!</span> <strong>Final deed of sale (att finali)</strong> — Housing Authority/Director of Lands → Luigia Sultana</li>
+          <li><span class="ci-icon ci-critical">!</span> <strong>Discharge / cancellation of the Lm 7,000 General Hypothec</strong></li>
+          <li><span class="ci-icon ci-critical">!</span> <strong>Current seller's deed of acquisition</strong> — by which current seller(s) became owners</li>
+          <li><span class="ci-icon ci-critical">!</span> <strong>Public Registry transfer searches</strong> against Luigia, Maria, Albert, and each of Maria's children</li>
+          <li><span class="ci-icon ci-critical">!</span> <strong>Public Registry liability searches</strong> against same persons, Housing Authority, and Director of Lands</li>
+          <li><span class="ci-icon ci-critical">!</span> <strong>Current Housing Authority clearance letter</strong> for file RTB 117/2002 on letterhead</li>
+          <li><span class="ci-icon ci-critical">!</span> <strong>Land Registry status</strong> — Form E and registered plan, or written confirmation not applicable</li>
+          <li><span class="ci-icon ci-critical">!</span> <strong>The current promise of sale / contract being offered to YOU</strong></li>
+        </ul>
+      </div>
+
+      <div class="card" style="border-color:var(--high-border);background:var(--high-bg);margin-bottom:20px">
+        <h3 style="color:var(--high)">IMPORTANT</h3>
+        <ul class="checklist">
+          <li><span class="ci-icon ci-high">!</span> <strong>Causa mortis declarations</strong> for Luigia (after 24.12.2007), Maria (after 26.10.2019), and Albert (after 03.11.2015)</li>
+          <li><span class="ci-icon ci-high">!</span> <strong>Maria Scicluna's own will</strong> (or Court certificate of no secret will + Public Registry Will Certificate)</li>
+          <li><span class="ci-icon ci-high">!</span> <strong>Identification of all of Maria Scicluna's children</strong> — names, full IDs, current addresses, birth certificates</li>
+          <li><span class="ci-icon ci-high">!</span> <strong>Architect/perit site report</strong> confirming physical property matches Konvenju description</li>
+          <li><span class="ci-icon ci-high">!</span> <strong>Planning Authority permits and plans</strong> for the property and block</li>
+          <li><span class="ci-icon ci-high">!</span> <strong>Condominium / common parts documents</strong></li>
+          <li><span class="ci-icon ci-high">!</span> <strong>Inventory / fixtures / furniture list</strong> if part of the deal</li>
+          <li><span class="ci-icon ci-high">!</span> <strong>Confirmation of decontrol</strong> (Cap 158) — should have been registered at the final act</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Nice to Have</h3>
+        <ul class="checklist">
+          <li><span class="ci-icon ci-nice">✓</span> Fresh certified true copy of the 22.10.2002 Konvenju from Notary Schembri Adami's protocol</li>
+          <li><span class="ci-icon ci-nice">✓</span> Authority approval letter confirming Sir Sid Darek application was accepted</li>
+          <li><span class="ci-icon ci-nice">✓</span> Land Department file Ten. No. 78119 — final reckoning, any rent refund</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══ 10. DRAFT EMAIL NOTARY ═══ -->
+    <div class="section" id="email-notary">
+      <div class="section-header">
+        <div class="section-num">10</div>
+        <h2>Draft Email — To Your Notary</h2>
+      </div>
+
+      <div class="email-draft">
+        <div class="email-draft-header" onclick="toggleEmail(this)">
+          <h3>📧 Subject: Due-diligence questions — 102 Triq il-Punent, Valletta — Sir Sid Darek file RTB 117/2002</h3>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="email-draft-body open">
+          <div class="email-body-text">Subject: Due-diligence questions — 102 Triq il-Punent, Valletta — Sir Sid Darek file RTB 117/2002
+
+Dear [Notary's name],
+
+I am considering the purchase of 102 Punent, Il-Belt Valletta. The seller / agent has provided me with documents that show the property was originally subsidised by the Housing Authority under the 2001 Sir Sid Darek scheme, on file RTB 117/2002, by way of a Konvenju of 22 October 2002 in the acts of Notary Sandro Schembri Adami (Act 13A; Vol. T or J Nº 1626/02), in favour of Luigia Sultana (ID 0017032M). The documents I have are summarised in the enclosed forensic review.
+
+Before I proceed any further, I would be grateful if you could confirm and advise me on the following:
+
+1. FINAL DEED (att finali). The Konvenju of 22.10.2002 contemplates a final deed within 6 months of the Authority obtaining legal title to the underlying land (Cl. 9; Sir Sid Darek scheme Cl. 10(iii)). The lease-termination clause and the co-presence of the Director of Lands suggest the land was still in the process of acquisition. Was the final deed ever executed? If so, please obtain and provide the date, notary, volume, registration entry, and a certified copy. If not, please explain the legal consequences for the current proposed transaction.
+
+2. GENERAL HYPOTHEC for Lm 7,000. The Konvenju records a General Hypothec in favour of the Housing Authority over all of Luigia Sultana's property, present and future, fixed at Lm 7,000 for registration purposes. Has this hypothec been formally discharged? Please conduct a Public Registry liability search and obtain the cancellation deed (if any).
+
+3. FULL CHAIN OF TITLE from Luigia Sultana to the current seller. Luigia died on 24.12.2007, leaving Will T/9145/1983 (Notary Joseph Cachia, 22.11.1983) naming her sister Maria Scicluna née Sultana sole universal heir, with vulgar substitution to Maria's children. Maria died 26.10.2019. Albert Scicluna (Maria's husband) predeceased Maria on 03.11.2015. Please:
+   - confirm the names, IDs, and addresses of all of Maria's children;
+   - confirm whether Maria left her own will;
+   - confirm whether causa mortis declarations have been registered for Luigia, Maria, and Albert;
+   - confirm that all current owners are joining in the proposed sale and have full capacity to do so.
+
+4. SIR SID DAREK RESTRICTIONS still in force. Please confirm the current status of:
+   - the subsidy claw-back obligation (Konvenju Cl. 4(d); scheme Cl. 11(iii)) — what amount is now due and to whom;
+   - the 2-month prior notice obligation to the Authority;
+   - the obligation to deposit two copies of any transfer with the Authority;
+   - the perpetual reservations in favour of Government over the roof and airspace, the right to build additional floors, and the common parts (Konvenju Cl. 13, 14, 15, 16);
+   - the decontrol status of the property (Cap 158) — confirmed only at the final act per Cl. 6.
+
+5. PROPERTY IDENTITY. Please confirm, with the assistance of an architect/perit and a Public Registry / Land Registry plan, that "il-fond numru 102 Punent, Il-Belt Valletta" as described in the Konvenju is the same physical property as that being offered to me. Please also clarify the position regarding: floor, apartment number, common parts, internal yard, garage, and any other tenement the seller claims to include.
+
+6. PUBLIC REGISTRY SEARCHES. Please carry out and provide:
+   - transfer searches against Luigia Sultana, Maria Scicluna née Sultana, Albert Scicluna, and each of Maria's children;
+   - liability searches against the same persons, the Housing Authority, and the Director of Lands;
+   - causa mortis searches for the three deceased.
+
+7. LAND REGISTRY. Please confirm whether the property falls within a Land Registry compulsory area; if so, obtain the Form E and the registered plan; if not, confirm in writing.
+
+8. REPORT ON TITLE. When the above is in hand, please issue your formal Report on Title, addressing in particular: (i) whether the seller(s) have full and unimpeachable title to convey; (ii) all subsisting servitudes, hypothecs, privileges, and statutory restrictions; (iii) any conditions precedent to a clean conveyance to me.
+
+Please confirm receipt and an estimated timetable for the searches and the Report on Title. I will not pay any further deposit or sign any further document until I have your written advice.
+
+Kind regards,
+[Your name]</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 11. DRAFT EMAIL HA ═══ -->
+    <div class="section" id="email-ha">
+      <div class="section-header">
+        <div class="section-num">11</div>
+        <h2>Draft Email — To the Housing Authority</h2>
+      </div>
+
+      <div class="email-draft">
+        <div class="email-draft-header" onclick="toggleEmail(this)">
+          <h3>📧 Subject: Request for current status — File RTB 117/2002 — 102 Triq il-Punent, Valletta</h3>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="email-draft-body open">
+          <div class="email-body-text">Subject: Request for current status — File RTB 117/2002 — 102 Triq il-Punent, Valletta — Sir Sid Darek (2001)
+To: Awtorità tad-Djar, 12 Triq Pietro Floriani, Furjana CMR 02
+
+Dear Sir/Madam,
+
+I am writing in connection with file RTB 117/2002 concerning the property at 102 Punent, Il-Belt Valletta, which was the subject of a Konvenju dated 22 October 2002 in the acts of Notary Dr Sandro Schembri Adami (Act 13A) under the 2001 Sir Sid Darek scheme (Subsidised Sale of Government Dwellings to Recognised Tenants). The original prospective purchaser was Ms Luigia Sultana (ID 0017032M, deceased 24 December 2007).
+
+The Authority's reference may also appear linked to Land Department tenancy file Ten. No. 78119 and a cover letter (Form AD 44) dated 11 November 2002 sent by the Authority to the Commissioner of Lands, Rents Section.
+
+I am considering acquiring this property and am conducting due diligence through my notary. To assist, I respectfully request a written status confirmation addressing the following:
+
+1. Whether the final deed of sale (att finali) following the Konvenju of 22.10.2002 was ever executed, and if so, the date, notary, and registration details.
+
+2. Whether the General Hypothec for Lm 7,000 in favour of the Housing Authority registered in the Konvenju over all of Ms Luigia Sultana's property has been formally discharged, and if so, please provide a copy of the cancellation deed.
+
+3. The current status of the subsidy claw-back obligation (Clause 4(d) of the Konvenju and Clause 11(iii) of the scheme) — i.e., the amount currently due to the Authority on transfer, calculated as the difference between the current fair market price and Lm 6,000 (€13,976.24), and whether the Authority requires settlement before any onward transfer.
+
+4. Any other conditions the Authority requires to be met before the property can be lawfully transferred today (consents, prior notice, specific documentation, conditions imposed under Clause 4(d) discretion).
+
+5. Whether the roof, airspace, common parts, and the Government's right to build additional floors (Konvenju Clauses 13, 14, 15, 16) remain reserved to the Authority and/or Government, or have been wholly or partly released.
+
+6. Whether the decontrol incentive (Cap 158) has taken effect on this property, given that under Clause 6 of the Konvenju this took effect "at the final act".
+
+7. Whether the Authority has received the two copies of every subsequent transfer required under Clause 11 of the Konvenju.
+
+8. Confirmation of whether, in the Authority's view, the property may now be lawfully transferred by the current holder of the rights, and on what terms.
+
+I am happy to provide a copy of the Konvenju, a copy of the AD 44 cover letter of 11.11.2002, and Ms Luigia Sultana's death extract on request.
+
+Kind regards,
+[Your name and contact details]</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 12. SELLER QUESTIONS ═══ -->
+    <div class="section" id="seller-questions">
+      <div class="section-header">
+        <div class="section-num">12</div>
+        <h2>Questions for Seller / Agent</h2>
+      </div>
+
+      <div class="card">
+        <p style="font-family:sans-serif;font-size:13.5px;color:var(--text-muted);margin-bottom:16px"><em>Please reply in writing to each of the following, with documents attached:</em></p>
+        <ul class="checklist">
+          <li><span class="ci-icon ci-critical">1</span> Provide the <strong>final deed of sale (att finali)</strong> by which the Housing Authority and Director of Lands transferred the property to Luigia Sultana, including a certified true copy.</li>
+          <li><span class="ci-icon ci-critical">2</span> Provide the <strong>deed by which the current seller(s) acquired the property</strong>, with full notarial details and registration entries.</li>
+          <li><span class="ci-icon ci-critical">3</span> Provide <strong>causa mortis declarations</strong> for Luigia (died 24.12.2007), Maria (died 26.10.2019), and Albert (died 03.11.2015), together with proof of registration.</li>
+          <li><span class="ci-icon ci-critical">4</span> Provide <strong>Maria Scicluna's own will</strong>, or a Civil Court certificate of no secret will and a Public Registry Will Certificate.</li>
+          <li><span class="ci-icon ci-critical">5</span> Provide a <strong>list of all of Maria Scicluna's children</strong> — full names, ID numbers, current addresses, birth certificates.</li>
+          <li><span class="ci-icon ci-critical">6</span> Provide a <strong>current Housing Authority clearance letter</strong> for file RTB 117/2002.</li>
+          <li><span class="ci-icon ci-critical">7</span> Provide recent <strong>Public Registry transfer and liability searches</strong> against Luigia, Maria, Albert, and each of Maria's children.</li>
+          <li><span class="ci-icon ci-critical">8</span> <strong>Clarify the physical scope of what is being sold:</strong> which floor/apartment; what is included (garage, parking, store, yard); whether roof or airspace is being included and the deed supporting that claim; what common-parts rights exist.</li>
+          <li><span class="ci-icon ci-high">9</span> Confirm whether the property has at any time been <strong>rented, sub-let, or used otherwise than as ordinary residence</strong>.</li>
+          <li><span class="ci-icon ci-high">10</span> Confirm whether any <strong>subsidy claw-back has been paid, waived, or quantified</strong>, and whether prior notice was given to the Authority before any post-2007 transmission.</li>
+          <li><span class="ci-icon ci-high">11</span> Provide the <strong>Planning Authority permit history</strong> and any plans on file for the property and block.</li>
+          <li><span class="ci-icon ci-high">12</span> Confirm whether any <strong>ground rent (ċens) is payable</strong>, and to whom, given that the AD 44 cover letter left the rate field blank.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══ 13. DECISION GUIDE ═══ -->
+    <div class="section" id="decision-guide">
+      <div class="section-header">
+        <div class="section-num">13</div>
+        <h2>Buyer Decision Guide — Traffic Light</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px">
+        <div style="background:#1a0000;border:2px solid var(--critical);border-radius:8px;padding:20px;text-align:center">
+          <div style="width:48px;height:48px;border-radius:50%;background:var(--critical);margin:0 auto 12px;box-shadow:0 0 20px rgba(220,38,38,0.6)"></div>
+          <div style="font-family:sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:6px">RED</div>
+          <div style="font-family:sans-serif;font-size:12px;color:rgba(255,255,255,0.6)">DO NOT PROCEED YET</div>
+        </div>
+        <div style="background:#1c1500;border:2px solid var(--medium);border-radius:8px;padding:20px;text-align:center;opacity:0.5">
+          <div style="width:48px;height:48px;border-radius:50%;background:var(--medium);margin:0 auto 12px"></div>
+          <div style="font-family:sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:6px">YELLOW</div>
+          <div style="font-family:sans-serif;font-size:12px;color:rgba(255,255,255,0.5)">Proceed with strict conditions</div>
+        </div>
+        <div style="background:#001a00;border:2px solid var(--low);border-radius:8px;padding:20px;text-align:center;opacity:0.3">
+          <div style="width:48px;height:48px;border-radius:50%;background:var(--low);margin:0 auto 12px"></div>
+          <div style="font-family:sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:6px">GREEN</div>
+          <div style="font-family:sans-serif;font-size:12px;color:rgba(255,255,255,0.5)">Clear to proceed</div>
+        </div>
+      </div>
+
+      <div class="alert alert-critical">
+        <strong>Current status: 🔴 RED — DO NOT PROCEED.</strong> The single most important reason: the final deed of sale (att finali) is not in the file. In Maltese law, a Konvenju is a contract in personam, not a transfer of immovable title.
+      </div>
+
+      <div class="card">
+        <h3>Move to YELLOW — Only If All These Are Satisfied</h3>
+        <ul class="checklist">
+          <li><span class="ci-icon ci-nice">✓</span> The final deed of sale is produced and verified</li>
+          <li><span class="ci-icon ci-nice">✓</span> The Lm 7,000 hypothec discharge is produced</li>
+          <li><span class="ci-icon ci-nice">✓</span> A current Housing Authority clearance letter is obtained</li>
+          <li><span class="ci-icon ci-nice">✓</span> All heirs are identified and confirmed in writing as joining in the sale</li>
+          <li><span class="ci-icon ci-nice">✓</span> Public Registry transfer + liability searches and Land Registry Form E / plan are obtained</li>
+          <li><span class="ci-icon ci-nice">✓</span> A perit confirms the physical property matches the documented description</li>
+          <li><span class="ci-icon ci-nice">✓</span> Your notary issues a written Report on Title</li>
+        </ul>
+      </div>
+
+      <div class="alert alert-critical" style="margin-top:16px">
+        <strong>Do not pay any further deposit, do not sign any further document, and do not commit to any timetable</strong> until at least items 1–7 in the "Critical Missing Documents" list (Section 9) are produced and your notary has reviewed them.
+      </div>
+    </div>
+
+    <!-- ═══ GLOSSARY ═══ -->
+    <div class="section" id="glossary">
+      <div class="section-header">
+        <div class="section-num" style="background:var(--gold);color:var(--navy)">A</div>
+        <h2>Annex — Plain-English Glossary of Key Maltese Legal Terms</h2>
+      </div>
+
+      <div class="glossary-grid">
+        <dl class="glossary-item">
+          <dt>Konvenju</dt>
+          <dd>Promise of sale / preliminary sale agreement. Binds the parties personally to go to a final deed, but does NOT itself transfer ownership of immovable property.</dd>
+        </dl>
+        <dl class="glossary-item">
+          <dt>Att finali</dt>
+          <dd>Final public deed — the actual deed of sale that transfers ownership.</dd>
+        </dl>
+        <dl class="glossary-item">
+          <dt>L-akwirenti prospettivi</dt>
+          <dd>The prospective purchaser — i.e. the buyer-to-be under the Konvenju, not yet the owner.</dd>
+        </dl>
+        <dl class="glossary-item">
+          <dt>Tale quale</dt>
+          <dd>"As is" — property sold in its existing state with all defects.</dd>
+        </dl>
+        <dl class="glossary-item">
+          <dt>Sir Sid Darek</dt>
+          <dd>"Become the owner of your home" — 2001 Government scheme for subsidised sale of Government dwellings to recognised tenants.</dd>
+        </dl>
+        <dl class="glossary-item">
+          <dt>Kerrej rikonoxxut</dt>
+          <dd>Recognised tenant — person occupying a Government dwelling under lease and recognised as such.</dd>
+        </dl>
+        <dl class="glossary-item">
+          <dt>Ipoteka Ġenerali</dt>
+          <dd>General Hypothec — a real security registered against ALL of a person's property (movable and immovable, present and future) in favour of a creditor.</dd>
+        </dl>
+        <dl class="glossary-item">
+          <dt>Causa mortis</dt>
+          <dd>"By reason of death" — the registration of an inheritance transmission for tax and registry purposes.</dd>
+        </dl>
+        <dl class="glossary-item">
+          <dt>Sostituzzjoni vulgare</dt>
+          <dd>Vulgar substitution — under a will, the appointment of substitute heirs to take the inheritance if the primary heir cannot or does not.</dd>
+        </dl>
+        <dl class="glossary-item">
+          <dt>Eredi universali</dt>
+          <dd>Universal heir — sole heir of the entire estate.</dd>
+        </dl>
+        <dl class="glossary-item">
+          <dt>Insinwat</dt>
+          <dd>Registered (in the notarial index).</dd>
+        </dl>
+        <dl class="glossary-item">
+          <dt>Cerziorazzjoni</dt>
+          <dd>Notarial verification of the parties' identity and capacity at the time of the act.</dd>
+        </dl>
+        <dl class="glossary-item">
+          <dt>Decontrol (Cap 158)</dt>
+          <dd>Removal of the property from the rent-control regime under the Housing Decontrol Ordinance.</dd>
+        </dl>
+        <dl class="glossary-item">
+          <dt>Prezz xieraq fis-suq</dt>
+          <dd>Fair market price.</dd>
+        </dl>
+        <dl class="glossary-item">
+          <dt>Ċens</dt>
+          <dd>Ground rent / emphyteutical canon.</dd>
+        </dl>
+        <dl class="glossary-item">
+          <dt>Form O</dt>
+          <dd>Public Registry death extract.</dd>
+        </dl>
+        <dl class="glossary-item">
+          <dt>RTB</dt>
+          <dd>Housing Authority property reference number.</dd>
+        </dl>
+        <dl class="glossary-item">
+          <dt>Ten. No.</dt>
+          <dd>Land Department tenancy file number.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
 
 <script>
-  const groups = {
-    ssd: [
-      { src: 'Sir sid darek- pg1.jpg',  label: 'Sir Sid Darek — Page 1' },
-      { src: 'Sir sid darek- pg2.jpg',  label: 'Sir Sid Darek — Page 2' },
-      { src: 'Sir sid darek- pg3.jpg',  label: 'Sir Sid Darek — Page 3' },
-      { src: 'Sir sid darek- pg4.jpg',  label: 'Sir Sid Darek — Page 4' },
-      { src: 'Sir sid darek- pg5.jpg',  label: 'Sir Sid Darek — Page 5' },
-      { src: 'Sir sid darek- pg6.jpg',  label: 'Sir Sid Darek — Page 6' },
-      { src: 'Sir sid darek- pg7.jpg',  label: 'Sir Sid Darek — Page 7' },
-      { src: 'Sir sid darek- pg8.jpg',  label: 'Sir Sid Darek — Page 8' },
-      { src: 'Sir sid darek- pg9.jpg',  label: 'Sir Sid Darek — Page 9' },
-      { src: 'Sir sid darek- pg10.jpg', label: 'Sir Sid Darek — Page 10' },
-      { src: 'Sir sid darek- pg11.jpg', label: 'Sir Sid Darek — Page 11' },
+  // ── Lightbox data ──
+  const galleries = {
+    'sir-sid': [
+      { src: 'Sir sid darek- pg1.jpg',  cap: 'Sir Sid Darek — Page 1' },
+      { src: 'Sir sid darek- pg2.jpg',  cap: 'Sir Sid Darek — Page 2' },
+      { src: 'Sir sid darek- pg3.jpg',  cap: 'Sir Sid Darek — Page 3' },
+      { src: 'Sir sid darek- pg4.jpg',  cap: 'Sir Sid Darek — Page 4' },
+      { src: 'Sir sid darek- pg5.jpg',  cap: 'Sir Sid Darek — Page 5' },
+      { src: 'Sir sid darek- pg6.jpg',  cap: 'Sir Sid Darek — Page 6' },
+      { src: 'Sir sid darek- pg7.jpg',  cap: 'Sir Sid Darek — Page 7' },
+      { src: 'Sir sid darek- pg8.jpg',  cap: 'Sir Sid Darek — Page 8' },
+      { src: 'Sir sid darek- pg9.jpg',  cap: 'Sir Sid Darek — Page 9' },
+      { src: 'Sir sid darek- pg10.jpg', cap: 'Sir Sid Darek — Page 10' },
+      { src: 'Sir sid darek- pg11.jpg', cap: 'Sir Sid Darek — Page 11' },
     ],
-    scan2: [
-      { src: 'SCAN 2-PG 1.jpg', label: 'Konvenju Scan — Page 1' },
-      { src: 'SCAN 2-PG 2.jpg', label: 'Konvenju Scan — Page 2' },
-      { src: 'SCAN 2-PG 3.jpg', label: 'Konvenju Scan — Page 3' },
-      { src: 'SCAN 2-PG 4.jpg', label: 'Konvenju Scan — Page 4' },
-      { src: 'SCAN 2-PG 5.jpg', label: 'Konvenju Scan — Page 5' },
+    'scan2': [
+      { src: 'SCAN 2-PG 1.jpg', cap: 'Konvenju Scan — Page 1' },
+      { src: 'SCAN 2-PG 2.jpg', cap: 'Konvenju Scan — Page 2' },
+      { src: 'SCAN 2-PG 3.jpg', cap: 'Konvenju Scan — Page 3' },
+      { src: 'SCAN 2-PG 4.jpg', cap: 'Konvenju Scan — Page 4' },
+      { src: 'SCAN 2-PG 5.jpg', cap: 'Konvenju Scan — Page 5' },
     ],
-    pr: [
-      { src: 'Public registry- Pg 1.jpg',              label: 'Public Registry — Page 1' },
-      { src: 'Public registry- Pg 2.jpg',              label: 'Public Registry — Page 2' },
-      { src: 'Public registry- Pg 3.jpg',              label: 'Public Registry — Page 3' },
-      { src: 'Public registry- Pg 4.jpg',              label: 'Public Registry — Page 4' },
-      { src: 'Public registry- Pg 5.jpg',              label: 'Public Registry — Page 5' },
-      { src: 'Public registry- Pg 6.jpg',              label: 'Public Registry — Page 6' },
-      { src: 'Public registry- form 2- pg 1.jpg',      label: 'Public Registry Form 2 — Page 1' },
-      { src: 'Public registry- form 2- pg 2- part 1.jpg', label: 'Public Registry Form 2 — Page 2 Part 1' },
-      { src: 'Public registry- form 2- pg 2- part 2.jpg', label: 'Public Registry Form 2 — Page 2 Part 2' },
+    'public-reg': [
+      { src: 'Public registry- Pg 1.jpg',              cap: 'Public Registry — Page 1' },
+      { src: 'Public registry- Pg 2.jpg',              cap: 'Public Registry — Page 2' },
+      { src: 'Public registry- Pg 3.jpg',              cap: 'Public Registry — Page 3' },
+      { src: 'Public registry- Pg 4.jpg',              cap: 'Public Registry — Page 4' },
+      { src: 'Public registry- Pg 5.jpg',              cap: 'Public Registry — Page 5' },
+      { src: 'Public registry- Pg 6.jpg',              cap: 'Public Registry — Page 6' },
+      { src: 'Public registry- form 2- pg 1.jpg',      cap: 'Public Registry Form 2 — Page 1' },
+      { src: 'Public registry- form 2- pg 2- part 1.jpg', cap: 'Public Registry Form 2 — Page 2 (Part 1)' },
+      { src: 'Public registry- form 2- pg 2- part 2.jpg', cap: 'Public Registry Form 2 — Page 2 (Part 2)' },
     ]
   };
 
-  let currentGroup = null;
+  let currentGallery = 'sir-sid';
   let currentIndex = 0;
 
-  function openLightbox(group, index) {
-    currentGroup = group;
+  function openLightbox(gallery, index) {
+    currentGallery = gallery;
     currentIndex = index;
     updateLightbox();
     document.getElementById('lightbox').classList.add('open');
@@ -976,10 +2018,10 @@
   }
 
   function updateLightbox() {
-    const item = groups[currentGroup][currentIndex];
-    document.getElementById('lightbox-img').src = item.src;
-    document.getElementById('lightbox-caption').textContent =
-      item.label + ' (' + (currentIndex + 1) + ' / ' + groups[currentGroup].length + ')';
+    const item = galleries[currentGallery][currentIndex];
+    document.getElementById('lb-img').src = item.src;
+    document.getElementById('lb-caption').textContent =
+      item.cap + ' (' + (currentIndex + 1) + ' / ' + galleries[currentGallery].length + ')';
   }
 
   function closeLightbox() {
@@ -987,23 +2029,56 @@
     document.body.style.overflow = '';
   }
 
-  function closeLightboxOnBackdrop(e) {
-    if (e.target === document.getElementById('lightbox')) closeLightbox();
-  }
-
-  function navLightbox(dir) {
-    const len = groups[currentGroup].length;
+  function lbNav(dir) {
+    const len = galleries[currentGallery].length;
     currentIndex = (currentIndex + dir + len) % len;
     updateLightbox();
   }
 
-  document.addEventListener('keydown', function(e) {
-    if (!document.getElementById('lightbox').classList.contains('open')) return;
-    if (e.key === 'Escape')      closeLightbox();
-    if (e.key === 'ArrowRight')  navLightbox(1);
-    if (e.key === 'ArrowLeft')   navLightbox(-1);
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
   });
-</script>
 
+  document.addEventListener('keydown', function(e) {
+    const lb = document.getElementById('lightbox');
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') lbNav(1);
+    if (e.key === 'ArrowLeft') lbNav(-1);
+  });
+
+  // ── Gallery tabs ──
+  function showGallery(name, tab) {
+    document.querySelectorAll('.gallery-grid').forEach(g => g.classList.remove('active'));
+    document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('gallery-' + name).classList.add('active');
+    tab.classList.add('active');
+    currentGallery = name;
+  }
+
+  // ── Email toggle ──
+  function toggleEmail(header) {
+    const body = header.nextElementSibling;
+    const icon = header.querySelector('.toggle-icon');
+    body.classList.toggle('open');
+    icon.textContent = body.classList.contains('open') ? '▼' : '▶';
+  }
+
+  // ── Active nav link ──
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('#sidebar nav a');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => link.classList.remove('active'));
+        const active = document.querySelector('#sidebar nav a[href="#' + entry.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
 </body>
 </html>
